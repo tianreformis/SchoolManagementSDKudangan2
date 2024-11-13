@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Work_Sans } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Work_Sans({ subsets: ["latin"],
+  weight: "400",
+  style: "normal",
+  variable: "--poppins-font",
+ });
 
 export const metadata: Metadata = {
   title: "Kudangan 2 School Management Dashboard",
