@@ -25,11 +25,11 @@ const CountChart = () => {
     <div className='bg-white rounded-xl h-full w-full py-4 px-2'>
       {/* Title */}
       <div className='flex justify-between items-center'>
-        <h1>Students</h1>
+        <h1 className='text-lg font-semibold'>Students</h1>
         <Image src="/moreDark.png" width={20} height={20} alt="" />
       </div>
       {/* Chart */}
-      <div className=' relative w-full h-full'>
+      <div className=' relative w-full h-[75%]'>
         <ResponsiveContainer width="100%" height="100%">
           <RadialBarChart cx="50%" cy="50%" innerRadius="40%" outerRadius="100%" barSize={32} data={data}>
             <RadialBar
@@ -53,12 +53,12 @@ const CountChart = () => {
         <div className='flex flex-col gap-1'>
           <div className='w-5 h-5 bg-lamaSky rounded-full'></div>
           <h1 className='font-bold'>1,123</h1>
-          <h2 className='text-xs text-gray-400'>Boys</h2>
+          <h2 className='text-xs text-gray-400'>Boys (55%)</h2>
         </div>
         <div className='flex flex-col gap-1'>
           <div className='w-5 h-5 bg-lamaYellow rounded-full'></div>
           <h1 className='font-bold'>1,123</h1>
-          <h2 className='text-xs text-gray-400'>Girls</h2>
+          <h2 className='text-xs text-gray-400'>Girls (45%)</h2>
         </div>
       </div>
     </div>
