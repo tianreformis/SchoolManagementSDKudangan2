@@ -1,5 +1,7 @@
+
 import Announcements from "@/components/Announcements"
 import EventCalendar from "@/components/EventCalendar"
+import BigCalendar from "@/components/ReactBigCalendar"
 import React from "react"
 
 const StudentPage
@@ -10,8 +12,7 @@ const StudentPage
       <div className="w-full x:w-2/3">
         <div className="h-full bg-white p-4 rounded-md">
           <h1 className="font-semibold text-xl">Schedule (4A)</h1>
-
-
+          <BigCalendar />
         </div>
       </div>
 
