@@ -1,5 +1,5 @@
 {
-    "editor.fontSize": 22,
+    "editor.fontSize": 18,
     "editor.fontFamily": "Fira Code",
     "editor.tabSize": 2,
     "editor.insertSpaces": true,
@@ -10,7 +10,7 @@
     "files.autoSaveDelay": 1000,
     "workbench.colorTheme": "Solarized Dark",
     "workbench.iconTheme": "eq-material-theme-icons",
-    "terminal.integrated.fontSize": 20,
+    "terminal.integrated.fontSize": 16,
     "git.enableSmartCommit": true,
     "git.autofetch": true,
     "explorer.confirmDelete": false,
