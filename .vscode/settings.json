@@ -1,6 +1,6 @@
 {
     "editor.fontSize": 18,
-    "editor.fontFamily": "Fira Code",
+    "editor.fontFamily": "IBM Plex Mono",
     "editor.tabSize": 2,
     "editor.insertSpaces": true,
     "editor.wordWrap": "on",
@@ -11,10 +11,14 @@
     "workbench.colorTheme": "Solarized Dark",
     "workbench.iconTheme": "eq-material-theme-icons",
     "terminal.integrated.fontSize": 16,
+    "terminal.integrated.fontFamily": "IBM Plex Mono",
     "git.enableSmartCommit": true,
     "git.autofetch": true,
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
     "telemetry.telemetryLevel": "off",
     "window.zoomLevel": -1,
+    "[powershell]": {
+        
+    }
 }
