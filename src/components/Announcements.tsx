@@ -1,7 +1,7 @@
 "use client"
 const Announcements = () => {
   return (
-    <div className="bg-white rounded-md">
+    <div className="bg-white rounded-md p-4">
       <div className="flex items-center justify-between">
         <h1 className="text-xl font-semibold">Announcements        </h1>
         <span>View All</span>

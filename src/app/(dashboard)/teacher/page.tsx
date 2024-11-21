@@ -4,7 +4,7 @@ import EventCalendar from "@/components/EventCalendar"
 import BigCalendar from "@/components/ReactBigCalendar"
 import React from "react"
 
-const StudentPage
+const TeacherPage
  = () => {
   return (
     <div className='flex-1 p-4 flex gap-4 flex-col xl:flex-row'>
@@ -25,4 +25,4 @@ const StudentPage
   )
 }
 
-export default StudentPage
+export default TeacherPage
