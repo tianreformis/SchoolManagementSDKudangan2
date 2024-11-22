@@ -25,11 +25,7 @@ const columns = [
     accessor: "students",
     className: "hidden md:table-cell",
   },
-  {
-    header: "Email",
-    accessor: "email",
-    className: "hidden md:table-cell",
-  },
+
   {
     header: "Phone",
     accessor: "phone",
@@ -56,7 +52,7 @@ const ParentListsPage = () => {
           <p className="text-xs text-gray-500">{item?.email}</p>
         </div>
       </td>
-      <td className="hidden md:table-cell">{item.students.join(",")}</td>
+      <td className="hidden md:table-cell">{item.students.join(", ")}</td>
       <td className="hidden md:table-cell">{item.phone}</td>
       <td className="hidden md:table-cell">{item.address}</td>
       <td>

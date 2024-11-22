@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import { Work_Sans } from "next/font/google";
+import { Poppins} from "next/font/google";
 import "./globals.css";
 
-const inter = Work_Sans({ subsets: ["latin"],
+const inter = Poppins({ subsets: ["latin"],
   weight: "400",
   style: "normal",
-  variable: "--poppins-font",
  });
 
 export const metadata: Metadata = {
