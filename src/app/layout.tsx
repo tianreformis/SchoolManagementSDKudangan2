@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Inter} from "next/font/google";
+import { Ubuntu_Condensed } from "next/font/google";
 import "./globals.css";
 
-const systemfont = Inter({ subsets: ["latin"],
+const systemfont = Ubuntu_Condensed({ subsets: ["latin"],
   weight: "400",
   style: "normal",
  });
