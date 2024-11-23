@@ -41,7 +41,7 @@ const columns = [
   },
 
 ]
-const SubjectListsPage = () => {
+const ClassesListsPage = () => {
 
   const renderRow = (item: Class) => (
     <tr key={item.id} className="border-b border-gray-200 even:bg-slate-50 text-sm hover:bg-lamaPurpleLight">
@@ -55,7 +55,7 @@ const SubjectListsPage = () => {
         <div className="flex items-center gap-2">
           <Link href={`list/teachers/${item.id}`} >
             <button className="h-7 w-7 flex items-center justify-center rounded-full bg-lamaSky">
-              <Image src="/view.png" alt="" width={16} height={16} className="w-5 h-5" />
+              <Image src="/edit.png" alt="" width={16} height={16} className="w-5 h-5" />
             </button>
           </Link>
           {role === "admin" && (
@@ -111,4 +111,4 @@ const SubjectListsPage = () => {
   )
 }
 
-export default SubjectListsPage
+export default ClassesListsPage
