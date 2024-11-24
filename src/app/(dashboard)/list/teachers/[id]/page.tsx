@@ -122,7 +122,7 @@ const SingleTeacherPage = () => {
           
           <Link href="/" className="p-3 rounded-md bg-lamaPurpleLight">Teacher Student</Link>
           <Link href="/" className="p-3 rounded-md bg-lamaYellowLight">Teacher Lesson</Link>
-          <Link href="/" className="p-3 rounded-md bg-lama-pink-50">Teacher Exam</Link>
+          <Link href="/" className="p-3 rounded-md bg-pink-50">Teacher Exam</Link>
           <Link href="/" className="p-3 rounded-md bg-lamaSkyLight">Teacher Assignment</Link>
 
 
