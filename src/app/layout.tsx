@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Ubuntu_Condensed } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 
-const systemfont = Ubuntu_Condensed({ subsets: ["latin"],
+const systemfont = Poppins({ subsets: ["latin"],
   weight: "400",
   style: "normal",
  });
