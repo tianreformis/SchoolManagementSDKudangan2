@@ -1,3 +1,4 @@
+import FormModal from "@/components/FormModal"
 import Pagination from "@/components/Pagination"
 import Table from "@/components/Table"
 import TableSearch from "@/components/TableSearch"
@@ -40,16 +41,12 @@ const AnnouncementListPage = () => {
       <td className="">{item.class}</td>
       <td className="hidden md:table-cell hover:underline">{item.date}</td> 
       <td>
-        <div className="flex items-center gap-2">
-          <Link href={`list/teachers/${item.id}`} >
-            <button className="h-7 w-7 flex items-center justify-center rounded-full bg-lamaSky">
-              <Image src="/edit.png" alt="" width={16} height={16} className="w-5 h-5" />
-            </button>
-          </Link>
+        <div className="flex items-center gap-2">      
           {role === "admin" && (
-            <button className="h-7 w-7 flex items-center justify-center rounded-full bg-lamaSky">
-              <Image src="/delete.png" alt="" width={16} height={16} className="w-5 h-5" />
-            </button>
+             <>
+             <FormModal table="announcement" type="update" data={item} />
+             <FormModal table="announcement" type="delete" id={item.id} />
+           </>
           )}
 
 
@@ -75,9 +72,7 @@ const AnnouncementListPage = () => {
               <Image src="/sort.png" alt="" width={14} height={14} />
             </button>
             {role === "admin" && (
-              <button className="w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow">
-                <Image src="/plus.png" alt="" width={14} height={14} />
-              </button>
+              <FormModal table="announcement" type="create" />
             )}
 
 
