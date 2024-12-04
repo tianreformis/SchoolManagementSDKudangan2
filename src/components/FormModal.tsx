@@ -3,6 +3,14 @@
 import Image from "next/image";
 import { useState } from "react";
 import TeacherForms from "./Forms/TeacherForms";
+import StudentForms from "./Forms/StudentForms";
+
+const forms : {
+  [key:string] : (type:"create"|"update", data?:any) => JSX.Element;
+} = {
+  teacher: (type,data )=> <TeacherForms type={type} data={data}/>,
+  student: (type,data )=> <StudentForms type={type} data={data}/>,
+}
 
 const FormModal = ({ table, type, data, id }: {
   table:
@@ -41,8 +49,10 @@ const FormModal = ({ table, type, data, id }: {
         <button className="bg-red-700 text-white py-2 px-4 rounded-md border-none w-max self-center">Delete...</button>
 
       </form>
+    ) : type ==="create" || type==="update" ? (
+      forms[table](type, data)
     ) : (
-      <TeacherForms type="create"/>
+      "Forms not found"
     )
   }
 
