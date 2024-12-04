@@ -1,5 +1,5 @@
 {
-    "editor.fontSize": 16,
+    "editor.fontSize": 20,
     "editor.fontFamily": "Fira Code",
     "editor.tabSize": 2,
     "editor.insertSpaces": true,
@@ -17,7 +17,7 @@
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
     "telemetry.telemetryLevel": "off",
-    "window.zoomLevel": -1,
+    "window.zoomLevel": 0,
     "[powershell]": {
         
     }

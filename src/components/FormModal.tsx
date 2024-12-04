@@ -2,14 +2,45 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import TeacherForms from "./Forms/TeacherForms";
-import StudentForms from "./Forms/StudentForms";
+// import TeacherForms from "./Forms/TeacherForms";
+// import StudentForms from "./Forms/StudentForms";
+import dynamic from "next/dynamic";
 
-const forms : {
-  [key:string] : (type:"create"|"update", data?:any) => JSX.Element;
+const TeacherForm = dynamic(() => import("./forms/TeacherForm"), {
+  loading: () => <h1>loading...</h1>,
+});
+const StudentForm = dynamic(() => import("./forms/StudentForms"), {
+  loading: () => <h1>loading...</h1>,
+});
+const AnnouncementForm = dynamic(() => import("./forms/AnnouncementForm"));
+const AssginmentForm = dynamic(() => import("./forms/AssignmentForm"));
+const AttendaceForm = dynamic(() => import("./forms/AtterndanceForm"));
+const ClassForm = dynamic(() => import("./forms/ClassForm"));
+const EventForm = dynamic(() => import("./forms/EventForm"));
+const ExamForm = dynamic(() => import("./forms/ExamForm"));
+const LessonForm = dynamic(() => import("./forms/LessonForm"));
+const ResultForm = dynamic(() => import("./forms/ResultForm"));
+const SubjectForm = dynamic(() => import("./forms/SubjectForm"));
+const ParentForm = dynamic(() => import("./forms/ParentForm"));
+
+
+
+const forms: {
+  [key: string]: (type: "create" | "update", data?: any) => JSX.Element;
 } = {
-  teacher: (type,data )=> <TeacherForms type={type} data={data}/>,
-  student: (type,data )=> <StudentForms type={type} data={data}/>,
+  teacher: (type, data) => <TeacherForm type={type} data={data} />,
+  student: (type, data) => <StudentForm type={type} data={data} />,
+  announcement: (type, data) => <AnnouncementForm type={type} data={data} />,
+  assignment: (type, data) => <AssginmentForm type={type} data={data} />,
+  attendace: (type, data) => <AttendaceForm type={type} data={data} />,
+  class: (type, data) => <ClassForm type={type} data={data} />,
+  event: (type, data) => <EventForm type={type} data={data} />,
+  exam: (type, data) => <ExamForm type={type} data={data} />,
+  lesson: (type, data) => <LessonForm type={type} data={data} />,
+  result: (type, data) => <ResultForm type={type} data={data} />,
+  subject: (type, data) => <SubjectForm type={type} data={data} />,
+  parent: (type, data) => <ParentForm type={type} data={data} />, 
+  //...more form components for other tables...
 }
 
 const FormModal = ({ table, type, data, id }: {
@@ -49,7 +80,7 @@ const FormModal = ({ table, type, data, id }: {
         <button className="bg-red-700 text-white py-2 px-4 rounded-md border-none w-max self-center">Delete...</button>
 
       </form>
-    ) : type ==="create" || type==="update" ? (
+    ) : type === "create" || type === "update" ? (
       forms[table](type, data)
     ) : (
       "Forms not found"
