@@ -167,12 +167,7 @@ const TeacherForms = ({
           </p>}
       </div>
       </div>
-    
-
-
-
-
-
+      
     <button className="bg-blue-400 rounded-md py-2 text-white hover:bg-blue-300">
       {type === "create" ? "Create" : "Update"}
     </button>
