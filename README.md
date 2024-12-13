@@ -29,8 +29,21 @@ This project for SD Kudangan 2 Learning Management System and School Management 
   npx prisma migrate dev --name init
 ```
     
-### Install Prisma 
+### Install Prisma Client
 ```bash
-  npx prisma migrate dev --name init
+  
 ```
-    
+
+## Database Seeding
+
+### Adding Prisma Seeding into "package.json"
+```
+"prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
+```
+
+### Install ts-node "for typescript node.js"
+```
+npm i -d ts-node
+```
