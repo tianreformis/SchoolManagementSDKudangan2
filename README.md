@@ -2,8 +2,18 @@
 # SD Kudangan 2 
 This project for SD Kudangan 2 Learning Management System and School Management System
 
-## Installation
-This 
+## Preparing 
+```bash
+  git clone 
+```
+
+## Installation Dependencies
+
+### Install Packages
+```bash
+  npm install
+```
+
 ### Install Prisma
 ```bash
   npm install prisma
