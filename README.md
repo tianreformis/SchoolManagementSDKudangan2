@@ -37,7 +37,7 @@ This project for SD Kudangan 2 Learning Management System and School Management 
 ## Database Seeding
 
 ### Adding Prisma Seeding into "package.json"
-```
+```json
 # Using non Next JS
 "prisma": {
     "seed": "ts-node prisma/seed.ts"
