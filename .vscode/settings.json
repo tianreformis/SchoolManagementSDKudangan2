@@ -1,6 +1,6 @@
 {
-    "editor.fontSize": 16,
-    "editor.fontFamily": "Fira Code",
+    "editor.fontSize": 17,
+    "editor.fontFamily": "IBM Plex Mono",
     "editor.tabSize": 2,
     "editor.insertSpaces": true,
     "editor.wordWrap": "on",
@@ -8,7 +8,7 @@
     "editor.rulers": [80, 120],
     "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 1000,
-    "workbench.colorTheme": "Solarized Dark",
+    "workbench.colorTheme": "Quiet Light",
     "workbench.iconTheme": "eq-material-theme-icons",
     "terminal.integrated.fontSize": 16,
     "terminal.integrated.fontFamily": "IBM Plex Mono",

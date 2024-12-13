@@ -1,26 +1,26 @@
-# Lama Dev School Management Dashboard
 
-## Getting Started
+# SD Kudangan 2 
+This project for SD Kudangan 2 Learning Management System and School Management System
 
-First, run the development server:
-
+## Installation
+This 
+### Install Prisma
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+  npm install prisma
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Initation Database Using Prisma
+```bash
+  npx prisma init
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Lama Dev Youtube Channel](https://youtube.com/lamadev) 
-- [Next.js](https://nextjs.org/learn)
+### Migrate Prisma into Database
+```bash
+  npx prisma migrate dev --name init
+```
+    
+### Install Prisma 
+```bash
+  npx prisma migrate dev --name init
+```
+    
