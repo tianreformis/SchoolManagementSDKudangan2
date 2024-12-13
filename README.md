@@ -31,7 +31,7 @@ This project for SD Kudangan 2 Learning Management System and School Management 
     
 ### Install Prisma Client
 ```bash
-  
+  npm install @prisma/client
 ```
 
 ## Database Seeding
@@ -50,6 +50,6 @@ This project for SD Kudangan 2 Learning Management System and School Management 
 ```
 
 ### Install ts-node "for typescript node.js"
-```
+```bash
 npm i -d ts-node
 ```
