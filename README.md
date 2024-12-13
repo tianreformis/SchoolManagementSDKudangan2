@@ -38,9 +38,15 @@ This project for SD Kudangan 2 Learning Management System and School Management 
 
 ### Adding Prisma Seeding into "package.json"
 ```
+# Using non Next JS
 "prisma": {
     "seed": "ts-node prisma/seed.ts"
   },
+
+# Using NextJS
+"prisma": {
+  "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+},
 ```
 
 ### Install ts-node "for typescript node.js"
