@@ -1,5 +1,5 @@
 {
-    "editor.fontSize": 16,
+    "editor.fontSize": 18,
     "editor.fontFamily": "Fira Code",
     "editor.tabSize": 2,
     "editor.insertSpaces": true,
@@ -8,8 +8,8 @@
     "editor.rulers": [80, 120],
     "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 1000,
-    "workbench.colorTheme": "Solarized Dark",
-    "workbench.iconTheme": "eq-material-theme-icons",
+    "workbench.colorTheme": "Abyss",
+    "workbench.iconTheme": "vs-seti",
     "terminal.integrated.fontSize": 16,
     "terminal.integrated.fontFamily": "IBM Plex Mono",
     "git.enableSmartCommit": true,
