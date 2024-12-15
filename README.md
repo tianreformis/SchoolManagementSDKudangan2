@@ -53,3 +53,8 @@ This project for SD Kudangan 2 Learning Management System and School Management 
 ```bash
 npm i -d ts-node
 ```
+
+### Seeding the database
+```bash
+npx prisma db seed
+```

@@ -20,12 +20,11 @@
     "react-dom": "^18",
     "react-hook-form": "^7.53.2",
     "recharts": "^2.13.3",
-    "ts-node": "^10.9.2",
     "yup": "^1.4.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@types/node": "^20",
+    "@types/node": "^20.17.10",
     "@types/react": "^18",
     "@types/react-big-calendar": "^1.15.0",
     "@types/react-dom": "^18",
@@ -33,7 +32,8 @@
     "eslint-config-next": "14.2.5",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
