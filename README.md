@@ -1,4 +1,3 @@
-
 # SD Kudangan 2 
 This project for SD Kudangan 2 Learning Management System and School Management System
 
@@ -57,4 +56,14 @@ npm i -d ts-node
 ### Seeding the database
 ```bash
 npx prisma db seed
+```
+
+## Running the Project
+1. Runing Prisma Studio
+```bash
+npx prisma studio
+```
+2. Running the Project
+```bash
+npm run dev
 ```
