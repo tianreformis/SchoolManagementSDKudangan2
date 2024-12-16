@@ -120,7 +120,7 @@ const SingleTeacherPage = () => {
         <div className="mt-4 flex gap-4 flex-wrap text-xs text-gray-500">
           <Link href="/" className="p-3 rounded-md bg-lamaSkyLight">Teacher Classes</Link>
           
-          <Link href="/" className="p-3 rounded-md bg-lamaPurpleLight">Teacher Student</Link>
+          <Link href={`/list/students?teacherId=${""}`} className="p-3 rounded-md bg-lamaPurpleLight">Teacher Student</Link>
           <Link href="/" className="p-3 rounded-md bg-lamaYellowLight">Teacher Lesson</Link>
           <Link href="/" className="p-3 rounded-md bg-pink-50">Teacher Exam</Link>
           <Link href="/" className="p-3 rounded-md bg-lamaSkyLight">Teacher Assignment</Link>

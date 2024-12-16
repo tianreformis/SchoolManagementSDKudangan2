@@ -5,7 +5,7 @@ import TableSearch from "@/components/TableSearch"
 import { role, teachersData } from "@/lib/data"
 import prisma from "@/lib/prisma"
 import { ITEM_PER_PAGE } from "@/lib/setttings"
-import { Class, Subject, Teacher } from "@prisma/client"
+import { Class, Prisma, Subject, Teacher } from "@prisma/client"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -54,7 +54,7 @@ const columns = [
 
 const renderRow = (item: TeacherList) => (
   <tr key={item.id} className="border-b border-gray-200 even:bg-slate-50 text-sm hover:bg-lamaPurpleLight">
-    <td className="flex items-center gap-4">
+    <td className="flex items-center gap-4 m-2">
       <Image src={item.img || "/avatar.png"}
         alt=""
         width={36}
@@ -93,9 +93,30 @@ const TeachersListsPage = async ({
   const { page, ...qeuryParams } = searchParams;
   const p = page ? parseInt(page) : 1;
 
+  //URL PARAMS CONDITIONS 
+  const query: Prisma.TeacherWhereInput = {};
+
+  if (qeuryParams) {
+    for (const [key, value] of Object.entries(qeuryParams)) {
+      if (value !== undefined) {
+        switch (key) {
+          case "classId":
+            query.lessons = {
+              some: {
+                classId: parseInt(value),
+              }
+            }
+            case "search":
+              query.name = {contains: value, mode: "insensitive"};
+        }
+      }
+    }
+  }
 
   const [data, count] = await prisma.$transaction([
     prisma.teacher.findMany({
+      where: query,
+
       include: {
         subjects: true,
         classes: true,
@@ -103,12 +124,8 @@ const TeachersListsPage = async ({
       take: ITEM_PER_PAGE,
       skip: ITEM_PER_PAGE * (p - 1),
     }),
-    prisma.teacher.count(),
+    prisma.teacher.count({where: query}),
   ])
-
-
-
-  const coutn = await prisma.teacher.count();
 
 
   return (
@@ -135,7 +152,7 @@ const TeachersListsPage = async ({
       </div>
 
       {/* List */}
-      <Table 
+      <Table
         columns={columns}
         renderRow={renderRow}
         data={data}

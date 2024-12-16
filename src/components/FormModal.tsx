@@ -60,7 +60,7 @@ const FormModal = ({ table, type, data, id }: {
   type: "update" | "delete" | "create";
   data?: any; //data akan fetch dari database
 
-  id?: number;
+  id?: number | string ;
 }) => {
   const size = type === "create" ? "h-8 w-8" : "h-7 w-7";
   const bgcolor =

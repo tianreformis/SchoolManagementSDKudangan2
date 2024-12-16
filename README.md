@@ -57,6 +57,10 @@ npm i -d ts-node
 ```bash
 npx prisma db seed
 ```
+### Force Reset Database
+```bash
+npx prisma db pus --force-reset
+```
 
 ## Running the Project
 1. Runing Prisma Studio
