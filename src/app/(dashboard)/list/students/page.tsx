@@ -99,12 +99,16 @@ const StudentListsPage = async ({
             query.class = {
               lessons: {
                 some: {
-                 teacherId : value,
+                  teacherId: value,
                 }
               }
-            }
+            };
+            break;
           case "search":
             query.name = { contains: value, mode: "insensitive" };
+            break;
+          default:
+            break;
         }
       }
     }
@@ -138,7 +142,7 @@ const StudentListsPage = async ({
               <Image src="/sort.png" alt="" width={14} height={14} />
             </button>
             {role === "admin" && (
-  
+
               <FormModal table="student" type="create" />
             )}
           </div>
