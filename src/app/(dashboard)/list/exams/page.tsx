@@ -48,7 +48,7 @@ const renderRow = (item: ExamList) => (
   <tr key={item.id} className="border-b border-gray-200 even:bg-slate-50 text-sm hover:bg-lamaPurpleLight">
     <td className="flex items-center gap-4 p-4"> {item.lesson.subject.name}</td>
     <td>{item.lesson.class.name}</td>
-    <td className="hidden md:table-cell hover:underline">{item.lesson.teacher.surname}</td>
+    <td className="hidden md:table-cell hover:underline">{item.lesson.teacher.name+" "+item.lesson.teacher.surname}</td>
 
     <td className="hidden md:table-cell hover:underline">
       {new Intl.DateTimeFormat("en-US").format(item.startTime)}
@@ -113,8 +113,8 @@ const ExamListsPage = async ({
         lesson: {
           select: {
             subject: { select: { name: true } },
-            class: { select: { name: true } },
-            teacher: { select: { name: true } },
+            class: { select: { name: true, } },
+            teacher: { select: { name: true, surname:true } },
           }
         }
       },
