@@ -100,6 +100,9 @@ const ExamListsPage = async ({
               
             }
             break;
+            default:
+              break;
+            
         }
       }
     }

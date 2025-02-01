@@ -10,7 +10,7 @@ import { headers } from "next/headers"
 import Image from "next/image"
 import Link from "next/link"
 
-type ClassList = Class & {supervisor : Teacher};
+type ClassList = Class & { supervisor: Teacher };
 
 const columns = [
   {
@@ -49,10 +49,10 @@ const renderRow = (item: ClassList) => (
       <div className="flex items-center gap-2">
 
         {role === "admin" && (
-           <>
-           <FormModal table="class" type="update" data={item} />
-           <FormModal table="class" type="delete" id={item.id} />
-         </>
+          <>
+            <FormModal table="class" type="update" data={item} />
+            <FormModal table="class" type="delete" id={item.id} />
+          </>
         )}
 
       </div>
@@ -60,7 +60,7 @@ const renderRow = (item: ClassList) => (
   </tr >
 );
 
-const ClassesListsPage =  async ({
+const ClassesListsPage = async ({
   searchParams,
 }: {
   searchParams: { [key: string]: string | undefined };
@@ -82,6 +82,8 @@ const ClassesListsPage =  async ({
           case "search":
             query.name = { contains: value, mode: "insensitive" };
             break;
+          default:
+            break;
         }
       }
     }
@@ -100,7 +102,7 @@ const ClassesListsPage =  async ({
     }),
     prisma.class.count({ where: query }),
   ])
- 
+
   return (
     <div className="bg-white p-4 rounded-md flex-1 m-4 mt-0">
       {/* Top */}
@@ -132,7 +134,7 @@ const ClassesListsPage =  async ({
         data={data}
       />
       {/* Pagination */}
-      <Pagination page={p} count={count}/>
+      <Pagination page={p} count={count} />
 
     </div>
   )

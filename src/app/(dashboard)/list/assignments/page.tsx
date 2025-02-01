@@ -98,6 +98,8 @@ const AssignmentListsPage = async ({
 
             }
             break;
+          default:
+            break;
         }
       }
     }

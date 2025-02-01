@@ -10,7 +10,7 @@ import { headers } from "next/headers"
 import Image from "next/image"
 import Link from "next/link"
 
-type ParentList = Parent & {students : Student[]}
+type ParentList = Parent & { students: Student[] }
 
 const columns = [
   {
@@ -48,7 +48,7 @@ const renderRow = (item: ParentList) => (
         <p className="text-xs text-gray-500">{item?.email}</p>
       </div>
     </td>
-    <td className="hidden md:table-cell">{item.students.map(student=>student.name ).join(",")}</td>
+    <td className="hidden md:table-cell">{item.students.map(student => student.name).join(",")}</td>
     <td className="hidden md:table-cell">{item.phone}</td>
     <td className="hidden md:table-cell">{item.address}</td>
     <td>
@@ -80,9 +80,11 @@ const ParentListsPage = async ({
   if (qeuryParams) {
     for (const [key, value] of Object.entries(qeuryParams)) {
       if (value !== undefined) {
-        switch (key) {          
+        switch (key) {
           case "search":
             query.name = { contains: value, mode: "insensitive" };
+            break;
+          default:
             break;
         }
       }
@@ -130,7 +132,7 @@ const ParentListsPage = async ({
         data={data}
       />
       {/* Pagination */}
-      <Pagination page={p} count={count}/>
+      <Pagination page={p} count={count} />
 
     </div>
   )

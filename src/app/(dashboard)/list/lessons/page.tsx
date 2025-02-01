@@ -10,8 +10,8 @@ import { headers } from "next/headers"
 import Image from "next/image"
 import Link from "next/link"
 
-type LessonList = Lesson & { subject: Subject } & { class: Class } & { 
-  teacher: Teacher; 
+type LessonList = Lesson & { subject: Subject } & { class: Class } & {
+  teacher: Teacher;
 };
 
 const columns = [
@@ -75,16 +75,18 @@ const LessonListsPage = async ({
       if (value !== undefined) {
         switch (key) {
           case "classId":
-            query.classId = parseInt(value); 
+            query.classId = parseInt(value);
             break;
           case "teacherId":
             query.teacherId = value;
             break;
           case "search":
             query.OR = [
-              {subject: {name : { contains: value, mode: "insensitive" }}},
-              {teacher: {name : { contains: value, mode: "insensitive" }}},
+              { subject: { name: { contains: value, mode: "insensitive" } } },
+              { teacher: { name: { contains: value, mode: "insensitive" } } },
             ]
+            break;
+          default:
             break;
         }
       }

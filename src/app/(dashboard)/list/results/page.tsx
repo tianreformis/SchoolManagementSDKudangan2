@@ -99,14 +99,14 @@ const ResultListsPage = async ({
         switch (key) {
           case "studentId":
             query.studentId = value;
-            break;        
+            break;
           case "search":
             query.OR = [
               { exam: { title: { contains: value, mode: "insensitive" } } },
               { student: { name: { contains: value, mode: "insensitive" } } },
             ];
             break;
-            default:  
+          default:
             break;
         }
       }
