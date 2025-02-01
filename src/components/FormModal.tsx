@@ -6,22 +6,22 @@ import { useState } from "react";
 // import StudentForms from "./Forms/StudentForms";
 import dynamic from "next/dynamic";
 
-const TeacherForm = dynamic(() => import("./forms/TeacherForm"), {
+const TeacherForm = dynamic(() => import("./Forms/TeacherForm"), {
   loading: () => <h1>loading...</h1>,
 });
-const StudentForm = dynamic(() => import("./forms/StudentForms"), {
+const StudentForm = dynamic(() => import("./Forms/StudentForms"), {
   loading: () => <h1>loading...</h1>,
 });
-const AnnouncementForm = dynamic(() => import("./forms/AnnouncementForm"));
-const AssginmentForm = dynamic(() => import("./forms/AssignmentForm"));
-const AttendaceForm = dynamic(() => import("./forms/AtterndanceForm"));
-const ClassForm = dynamic(() => import("./forms/ClassForm"));
-const EventForm = dynamic(() => import("./forms/EventForm"));
-const ExamForm = dynamic(() => import("./forms/ExamForm"));
-const LessonForm = dynamic(() => import("./forms/LessonForm"));
-const ResultForm = dynamic(() => import("./forms/ResultForm"));
-const SubjectForm = dynamic(() => import("./forms/SubjectForm"));
-const ParentForm = dynamic(() => import("./forms/ParentForm"));
+const AnnouncementForm = dynamic(() => import("./Forms/AnnouncementForm"));
+const AssginmentForm = dynamic(() => import("./Forms/AssignmentForm"));
+const AttendaceForm = dynamic(() => import("./Forms/AtterndanceForm"));
+const ClassForm = dynamic(() => import("./Forms/ClassForm"));
+const EventForm = dynamic(() => import("./Forms/EventForm"));
+const ExamForm = dynamic(() => import("./Forms/ExamForm"));
+const LessonForm = dynamic(() => import("./Forms/LessonForm"));
+const ResultForm = dynamic(() => import("./Forms/ResultForm"));
+const SubjectForm = dynamic(() => import("./Forms/SubjectForm"));
+const ParentForm = dynamic(() => import("./Forms/ParentForm"));
 
 
 
