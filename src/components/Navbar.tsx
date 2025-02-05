@@ -7,7 +7,7 @@ const Navbar = () => {
       {/* SearchBar */}
       <div className="hidden md:flex items-center gap-2 text-xs rounded-full ring-[1.5px] ring-gray-300 px-2">
         <Image src="/search.png" alt="" width={14} height={14} />
-        <input type="text" placeholder="Search" className="w-[200px] p-2 bg-transparent outline-none"/>
+        <input type="text" placeholder="Search" className="w-[200px] p-2 bg-transparent outline-none" />
       </div>
 
       {/* // Icons and User */}
@@ -23,8 +23,15 @@ const Navbar = () => {
           <span className="text-xs leading-3 font-medium">Jhon Doe</span>
           <span className="text-[10px] text-gray-500 text-right">Kepala Sekolah</span>
         </div>
-        <UserButton appearance={{ elements: { userButtonAvatarBox: { width: "36px", height: "36px" } } }}/>
-        
+        <UserButton appearance={{
+          elements: {
+            userButtonAvatarBox: {
+              width: "36px",
+              height: "36px"
+            }
+          }
+        }} />
+
       </div>
     </div>
 
