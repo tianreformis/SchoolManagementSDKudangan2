@@ -121,7 +121,7 @@ const menuItems = [
 ];
 
 const Menu = () => {
-  const pathname = usePathname;
+  const pathname = usePathname();
   return (
     <div className='mt-4 text-sm'>
       {menuItems.map((i) => (
@@ -136,7 +136,7 @@ const Menu = () => {
                   className={`flex items-center lg:justify-start gap-4 text-black py-2 rounded-md hover:bg-lamaSkyLight p-2 
                   ${pathname === item.href
                       ? " bg-lamaSky"
-                      : ''}
+                      : ""}
                   `}
 
                 >
