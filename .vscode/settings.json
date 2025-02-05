@@ -10,7 +10,7 @@
     "files.autoSaveDelay": 1000,
     "workbench.colorTheme": "Default Dark Modern",
     "workbench.iconTheme": "eq-material-theme-icons-darker",
-    "terminal.integrated.fontSize": 16,
+    "terminal.integrated.fontSize": 14,
     "terminal.integrated.fontFamily": "Fira Code",
     "git.enableSmartCommit": true,
     "git.autofetch": true,

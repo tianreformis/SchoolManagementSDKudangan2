@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import { ClerkProvider } from "@clerk/nextjs";
 
-const systemfont = Poppins({ subsets: ["latin"],
+const systemfont = Poppins({
+  subsets: ["latin"],
   weight: "400",
   style: "normal",
- });
+});
 
 export const metadata: Metadata = {
   title: "Kudangan 2 School Management Dashboard",
@@ -18,8 +20,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={systemfont.className}>{children}</body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={systemfont.className}>{children}</body>
+      </html>
+    </ClerkProvider>
   );
 }
