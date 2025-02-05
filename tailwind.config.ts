@@ -20,6 +20,8 @@ const config: Config = {
         lamaPurpleLight:"#F1F0FF",
         lamaYellow:"#FAE27C",
         lamaYellowLight:"#FEFCE8",
+        tianDarkColor:"2C3E50",
+        tianLightColor : "ECF0F1",
       },
     },
   },

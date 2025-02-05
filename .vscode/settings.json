@@ -2,6 +2,7 @@
     "editor.fontSize": 22,
     "editor.fontFamily": "Fira Code",
     "editor.tabSize": 2,
+    "editor.minimap.autohide": true,
     "editor.insertSpaces": true,
     "editor.wordWrap": "on",
     "editor.minimap.enabled": true,
@@ -18,8 +19,5 @@
     "explorer.confirmDragAndDrop": false,
     "telemetry.telemetryLevel": "off",
     "window.zoomLevel": -1,
-    "[powershell]": {
-        
-    },
-    
+    "linux.window.zoomLevel": -2,
 }

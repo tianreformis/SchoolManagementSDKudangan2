@@ -1,5 +1,9 @@
 import { SignIn } from '@clerk/nextjs'
 
 export default function Page() {
-  return <SignIn forceRedirectUrl={'/admin'}/>
+  return <div className='flex items-center justify-center h-screen bg-tianDarkColor'>
+    <SignIn forceRedirectUrl={'/admin'}/>
+  </div>
+
+
 }
