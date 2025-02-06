@@ -2,13 +2,35 @@
 
 import * as Clerk from '@clerk/elements/common'
 import * as SignIn from '@clerk/elements/sign-in'
+import { useUser } from '@clerk/nextjs'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 
-export default function Page() {
+const LoginPage = () => {
+
+  const { isLoaded, isSignedIn, user } = useUser();
+  const router = useRouter();
+
+  useEffect(() => {
+    const role = user?.publicMetadata.role;
+
+    if (role) {
+      router.push(`/${role}`);
+    }
+    else {
+      router.push('/');
+    }
+
+  }, [user, router]);
+
   return <div className='flex items-center justify-center h-screen bg-lamaSkyLight'>
-    <SignIn.Root>
-      <SignIn.Step name='start' className='bg-white rounded-md shadow-2xl p-12 flex flex-col gap-2'>
+    <SignIn />
+    {/* <SignIn.Root>
+      <SignIn.Step
+        name='start'
+        className='bg-white rounded-md shadow-2xl p-12 flex flex-col gap-2'>
         <h1 className='text-xl font-bold flex items-center gap-2 justify-center'>
           <Image src="/logo.png" alt="" width={30} height={30} />
           SD Kudangan 2
@@ -44,10 +66,13 @@ export default function Page() {
         <SignIn.Action
           submit
           className='bg-blue-500 text-white my-1 rounded-md text-lg p-2 font-bold'
-        >SignIn </SignIn.Action>
+        >
+          SignIn
+        </SignIn.Action>
       </SignIn.Step>
-    </SignIn.Root>
+    </SignIn.Root> */}
   </div>
 
 
 }
+export default LoginPage
