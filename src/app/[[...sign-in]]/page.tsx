@@ -48,6 +48,4 @@ export default function Page() {
       </SignIn.Step>
     </SignIn.Root>
   </div>
-
-
 }
