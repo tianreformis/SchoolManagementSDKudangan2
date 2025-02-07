@@ -7,9 +7,7 @@ import prisma from "@/lib/prisma"
 import { ITEM_PER_PAGE } from "@/lib/setttings"
 import { currentUserId, role } from "@/lib/utils"
 import { Assignment, Class, Prisma, Subject, Teacher } from "@prisma/client"
-import { headers } from "next/headers"
 import Image from "next/image"
-import Link from "next/link"
 
 type AssignmentList = Assignment & {
   lesson: {
