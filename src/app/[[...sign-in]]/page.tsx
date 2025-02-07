@@ -40,7 +40,7 @@ const LoginPage = () => {
             <Clerk.Input
               type="text"
               required
-              className="p-2 rounded-md ring-1 ring-gray-300"
+              className=" shadow-md p-2 rounded-md ring-2 ring-gray-300"
             />
             <Clerk.FieldError className="text-xs text-red-400" />
           </Clerk.Field>
@@ -51,7 +51,7 @@ const LoginPage = () => {
             <Clerk.Input
               type="password"
               required
-              className="p-2 rounded-md ring-1 ring-gray-300"
+              className="p-2 rounded-md ring-2 ring-gray-300 shadow-md"
             />
             <Clerk.FieldError className="text-xs text-red-400" />
           </Clerk.Field>

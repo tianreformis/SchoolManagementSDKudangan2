@@ -2,9 +2,10 @@ import FormModal from "@/components/FormModal"
 import Pagination from "@/components/Pagination"
 import Table from "@/components/Table"
 import TableSearch from "@/components/TableSearch"
-import { assignmentsData, examsData, lessonsData, role } from "@/lib/data"
+
 import prisma from "@/lib/prisma"
 import { ITEM_PER_PAGE } from "@/lib/setttings"
+import { currentUserId, role } from "@/lib/utils"
 import { Assignment, Class, Prisma, Subject, Teacher } from "@prisma/client"
 import { headers } from "next/headers"
 import Image from "next/image"
@@ -37,10 +38,10 @@ const columns = [
     accessor: "dueDate",
     className: "hidden md:table-cell",
   },
-  {
+  ...(role === "admin" || role === "teacher" ? [{
     header: "Aksi",
     accessor: "action",
-  },
+  }] : []),
 
 ]
 
@@ -54,7 +55,7 @@ const renderRow = (item: AssignmentList) => (
     </td>
     <td>
       <div className="flex items-center gap-2">
-        {role === "admin" && (
+        {role === "admin" || role === "teacher" && (
           <>
             <FormModal table="assignment" type="update" data={item} />
             <FormModal table="announcement" type="delete" id={item.id} />
@@ -76,27 +77,22 @@ const AssignmentListsPage = async ({
   //URL PARAMS CONDITIONS 
   const query: Prisma.AssignmentWhereInput = {};
 
+  query.lesson = {}
+
   if (queryParams) {
     for (const [key, value] of Object.entries(queryParams)) {
       if (value !== undefined) {
         switch (key) {
           case "classId":
-            query.lesson = {
-              classId: parseInt(value)
-            }
+            query.lesson.classId = parseInt(value);
             break;
           case "teacherId":
-            query.lesson = {
-              teacherId: value
-            }
+            query.lesson.teacherId = value
             break;
           case "search":
-            query.lesson = {
-              subject: {
-                name: { contains: value, mode: "insensitive" }
-              }
-
-            }
+            query.lesson.subject = {
+              name: { contains: value, mode: "insensitive" },
+            };
             break;
           default:
             break;
@@ -104,6 +100,38 @@ const AssignmentListsPage = async ({
       }
     }
   }
+
+  //Condiotional Rendering Using Role 
+  switch (role) {
+    case "admin":
+      break;
+    case "teacher":
+      query.lesson.teacherId = currentUserId!;
+      break;
+    case "student":
+      query.lesson.class = {
+        students: {
+          some: {
+            id: currentUserId!
+          }
+        }
+      }
+      break;
+      case "parent":
+        query.lesson.class = {
+          students: {
+            some: {
+              parentId: currentUserId!
+            }
+          }
+        }
+        break;
+
+    default:
+      break;
+
+  }
+
 
   const [data, count] = await prisma.$transaction([
     prisma.assignment.findMany({
