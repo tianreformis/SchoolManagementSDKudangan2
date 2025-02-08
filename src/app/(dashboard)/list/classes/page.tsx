@@ -33,10 +33,12 @@ const columns = [
     accessor: "Supervisor",
     className: "hidden md:table-cell",
   },
-  {
-    header: "Aksi",
-    accessor: "action",
-  },
+  ...(role === "admin" ?
+    [{
+      header: "Aksi",
+      accessor: "action",
+    }] : [])
+
 
 ]
 const renderRow = (item: ClassList) => (
