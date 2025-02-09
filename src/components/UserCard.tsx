@@ -24,7 +24,7 @@ const UserCard = async ({ type }: { type: "admin" | "teacher" | "student" | "par
 
       </div>
       <h1 className="text-2xl font-semibold my-4">{data}</h1>
-      <h2 className="capitalize text-sm font-medium text-gray-400">
+      <h2 className="capitalize text-sm font-medium text-gray-400 bg-white p-1 rounded-full min-w-fit">
         {type === "admin" ? "Admin" : type === "teacher" ? "Guru" : type === "student" ? "Murid" : type === "parent" ? "Orang Tua" : ""}
       </h2>
 
