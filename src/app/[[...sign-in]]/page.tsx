@@ -67,7 +67,10 @@ const LoginPage = () => {
           >
             Sign In
           </SignIn.Action>
-          Kendala Login <Link href="" className="text-blue-500 font-bold">Hubungi Admin</Link>
+          <p>
+            Kendala Login <Link href={`mailto:${process.env.DEV_EMAIL}`} className="text-blue-500 font-bold">Hubungi Admin</Link>
+          </p>
+
         </SignIn.Step>
 
       </SignIn.Root>

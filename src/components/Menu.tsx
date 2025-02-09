@@ -1,6 +1,8 @@
 import { currentUser } from "@clerk/nextjs/server";
+import { headers } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
+
 
 const menuItems = [
   {
@@ -121,7 +123,16 @@ const Menu = async () => {
 
   const user = await currentUser();
   const role = user?.publicMetadata.role as string;
+
+  const headersList = headers();
+  const domain = headersList.get('host') || "";
+  const fullUrl = headersList.get('referer') || "";
+  const [, pathname] = fullUrl.match(new RegExp(`https?:\/\/${domain}(.*)`)) || [];
   
+  console.log(pathname);
+  
+
+
   return (
     <div className="mt-4 text-sm">
       {menuItems.map((i) => (
@@ -135,7 +146,12 @@ const Menu = async () => {
                 <Link
                   href={item.href}
                   key={item.label}
-                  className="flex items-center justify-center lg:justify-start gap-4 text-gray-500 py-2 md:px-2 rounded-md hover:bg-lamaSkyLight"
+                  className={`
+                    flex items-center justify-center lg:justify-start gap-4 text-gray-500 py-2 md:px-2 rounded-md hover:bg-lamaSkyLight
+                  ${pathname === item.href
+                      ? "font-bold bg-lamaSkyLight"
+                      : ""}
+                    `}
                 >
                   <Image src={item.icon} alt="" width={20} height={20} />
                   <span className="hidden lg:block">{item.label}</span>

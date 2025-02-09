@@ -1,5 +1,5 @@
 {
-    "editor.fontSize": 16,
+    "editor.fontSize": 20,
     "editor.fontFamily": "Fira Code",
     "editor.tabSize": 2,
     "editor.minimap.autohide": true,
@@ -11,13 +11,13 @@
     "files.autoSaveDelay": 1000,
     "workbench.colorTheme": "Default Dark Modern",
     "workbench.iconTheme": "eq-material-theme-icons-darker",
-    "terminal.integrated.fontSize": 12,
+    "terminal.integrated.fontSize": 13,
     "terminal.integrated.fontFamily": "Fira Code",
     "git.enableSmartCommit": true,
     "git.autofetch": true,
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
     "telemetry.telemetryLevel": "off",
-    "window.zoomLevel": -1,
+    "window.zoomLevel": -2,
     "linux.window.zoomLevel": -1,
 }

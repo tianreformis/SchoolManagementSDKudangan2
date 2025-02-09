@@ -122,9 +122,6 @@ const ClassesListsPage = async ({
             {role === "admin" && (
               <FormModal table="class" type="create" />
             )}
-
-
-
           </div>
         </div>
       </div>
