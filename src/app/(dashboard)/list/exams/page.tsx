@@ -113,18 +113,18 @@ const ExamListsPage = async ({
       break;
     case "student":
       query.lesson.class = {
-        students : {
-          some : {
-            id : currentUserId!,
+        students: {
+          some: {
+            id: currentUserId!,
           }
         }
       }
       break;
-      case "parent":
+    case "parent":
       query.lesson.class = {
-        students : {
-          some : {
-            parentId : currentUserId!,
+        students: {
+          some: {
+            parentId: currentUserId!,
           }
         }
       }
@@ -168,7 +168,7 @@ const ExamListsPage = async ({
             <button className="w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow">
               <Image src="/sort.png" alt="" width={14} height={14} />
             </button>
-            {role === "admin" && (
+            {(role === "admin" || role === "teacher") && (
               <FormModal table="exam" type="create" />
             )}
 

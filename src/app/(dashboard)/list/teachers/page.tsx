@@ -2,9 +2,9 @@ import FormModal from "@/components/FormModal"
 import Pagination from "@/components/Pagination"
 import Table from "@/components/Table"
 import TableSearch from "@/components/TableSearch"
-import { role, teachersData } from "@/lib/data"
 import prisma from "@/lib/prisma"
 import { ITEM_PER_PAGE } from "@/lib/setttings"
+import { role } from "@/lib/utils"
 import { Class, Prisma, Subject, Teacher } from "@prisma/client"
 import Image from "next/image"
 import Link from "next/link"
@@ -45,10 +45,10 @@ const columns = [
     accessor: "address",
     className: "hidden lg:table-cell",
   },
-  {
+  ...(role === "admin" ? [{
     header: "Actions",
     accessor: "action",
-  },
+  }] : []),
 
 ]
 
@@ -74,7 +74,7 @@ const renderRow = (item: TeacherList) => (
       <div className="flex items-center gap-2">
         <Link href={`/list/teachers/${item.id}`} >
           <button className="h-7 w-7 flex items-center justify-center rounded-full bg-lamaSky">
-            <Image src="/update.png" alt="" width={16} height={16} className="w-5 h-5" />
+            <Image src="/view.png" alt="" width={16} height={16} className="w-5 h-5" />
           </button>
         </Link>
         {role === "admin" && (
