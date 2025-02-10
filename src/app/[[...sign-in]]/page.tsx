@@ -10,6 +10,7 @@ import { useEffect } from "react";
 
 const LoginPage = () => {
   const { isLoaded, isSignedIn, user } = useUser();
+  
 
   const router = useRouter();
 
@@ -19,7 +20,16 @@ const LoginPage = () => {
     if (role) {
       router.push(`/${role}`);
     }
-  }, [user, router]);
+    else {
+      router.refresh();
+      router.push(`/`);
+    }
+    if (isLoaded){
+      <div>Loading</div>
+    }
+  }, [user, router,isLoaded]);
+
+
 
   return (
     <div className="h-screen flex items-center justify-center bg-lamaSkyLight">

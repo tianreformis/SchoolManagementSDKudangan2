@@ -12,6 +12,8 @@ const TeacherForm = dynamic(() => import("./Forms/TeacherForm"), {
 const StudentForm = dynamic(() => import("./Forms/StudentForms"), {
   loading: () => <h1>loading...</h1>,
 });
+
+
 const AnnouncementForm = dynamic(() => import("./Forms/AnnouncementForm"));
 const AssginmentForm = dynamic(() => import("./Forms/AssignmentForm"));
 const AttendaceForm = dynamic(() => import("./Forms/AtterndanceForm"));
