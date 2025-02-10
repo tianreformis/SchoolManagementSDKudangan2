@@ -29,7 +29,7 @@ const AttendanceChart = ({ data }
           }}
         />
         <Bar
-          dataKey="present"
+          dataKey="present"          
           fill="#FAE27C"
           legendType='circle'
           radius={[10, 10, 0, 0]}
