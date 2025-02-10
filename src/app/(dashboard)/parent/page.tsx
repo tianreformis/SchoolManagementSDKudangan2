@@ -1,7 +1,7 @@
 
 import Announcements from "@/components/Announcements"
 import EventCalendar from "@/components/EventCalendar"
-import BigCalendar from "@/components/ReactBigCalendar"
+import BigCalendar from "@/components/BigCalendar"
 import React from "react"
 
 const ParentPage

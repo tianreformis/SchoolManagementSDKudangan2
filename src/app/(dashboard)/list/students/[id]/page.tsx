@@ -1,6 +1,6 @@
 import Announcements from "@/components/Announcements"
 import Performance from "@/components/Performance"
-import BigCalendar from "@/components/ReactBigCalendar"
+import BigCalendar from "@/components/BigCalendar"
 import Image from "next/image"
 import Link from "next/link"
 
