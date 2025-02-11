@@ -37,16 +37,16 @@ const renderRow = (item: SubjectList) => (
 
     <td>
       <div className="flex items-center gap-2">
-        <Link href={`list/teachers/${item.id}`} >
+        {/* <Link href={`list/teachers/${item.id}`} >
           <button className="h-7 w-7 flex items-center justify-center rounded-full bg-lamaSky">
             <Image src="/view.png" alt="" width={16} height={16} className="w-5 h-5" />
           </button>
-        </Link>
+        </Link> */}
         {(role === "admin" || role === "teacher") && (
           <>
             <FormModal table="subject" type="update" data={item} />
             <FormModal table="subject" type="delete" id={item.id} />
-            
+
           </>
         )}
       </div>
@@ -63,7 +63,7 @@ const SubjectListsPage = async ({
   const { page, ...qeuryParams } = searchParams;
   const p = page ? parseInt(page) : 1;
 
-  //URL PARAMS CONDITIONS 
+  //URL PARAMS CONDITIONS
   const query: Prisma.SubjectWhereInput = {};
 
   if (qeuryParams) {
