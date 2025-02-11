@@ -6,17 +6,18 @@ import InputField from "../InputField";
 import { subjectSchema, SubjectSchema } from "@/lib/formValidationSchema";
 import { createSubject } from "@/lib/action";
 import { useFormState } from "react-dom";
-import { useEffect } from "react";
-
-
-
+import { Dispatch, SetStateAction, useEffect } from "react";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 const SubjectForms = ({
   type,
-  data
+  data,
+  setOpen,
 }: {
   type: "create" | "update"
-  data?: any
+  data?: any,
+  setOpen: Dispatch<SetStateAction<boolean>>;
 }) => {
 
 
@@ -39,9 +40,16 @@ const SubjectForms = ({
     formAction(data);
   });
 
+  const router = useRouter();
   useEffect(() => {
+    if (state.success) {
+      toast.success(`Mapel selesai di ${type === "create" ? "Buat" : "Edit"}`);
+      setOpen(false);
+      router.refresh();
+    }
 
-  },[]);
+
+  }, [state, type, setOpen, router]);
 
   return <form className="flex flex-col gap-8" onSubmit={onSubmit}>
     <h1 className="text-xl font-semibold">{type === "create" ? "Buat Mata Pelajaran Baru" : "Edit Mata Pelajaran"}</h1>

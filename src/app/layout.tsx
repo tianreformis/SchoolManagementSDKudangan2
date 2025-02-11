@@ -25,11 +25,12 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={systemfont.className}>{
-        children}
-        <ToastContainer 
-        position="bottom-right"
-        theme="dark"
-        />
+          children}
+          <ToastContainer
+            position="bottom-right"
+            theme="dark"
+            autoClose={3000}          
+          />
         </body>
       </html>
     </ClerkProvider>
