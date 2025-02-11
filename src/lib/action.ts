@@ -36,16 +36,17 @@ export const updateSubject = async (
       },
       data: {
         name: data.name,
-      }
-
+        
+      },
     });
+
     // revalidatePath("/list/subjects");
-    return { success: true, error: false }
+    return { success: true, error: false };
   } catch (err) {
     console.log(err);
-    return { success: false, erorr: true }
+    return { success: false, error: true };
   }
-}
+};
 
 export const deleteSubject = async (
   currentState: CurrentState,

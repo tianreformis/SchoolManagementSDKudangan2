@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import InputField from "../InputField";
 import { subjectSchema, SubjectSchema } from "@/lib/formValidationSchema";
-import { createSubject } from "@/lib/action";
+import { createSubject, updateSubject } from "@/lib/action";
 import { useFormState } from "react-dom";
 import { Dispatch, SetStateAction, useEffect } from "react";
 import { toast } from "react-toastify";
@@ -30,10 +30,13 @@ const SubjectForms = ({
   })
 
   // After React 19 it ill be UseActionState
-  const [state, formAction] = useFormState(createSubject, {
-    success: false,
-    error: false,
-  });
+  const [state, formAction] = useFormState(
+    type === "create" ? createSubject : updateSubject,
+    {
+      success: false,
+      error: false,
+    }
+  );
 
   const onSubmit = handleSubmit((data) => {
     console.log(data);

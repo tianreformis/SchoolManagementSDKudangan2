@@ -42,7 +42,7 @@ const renderRow = (item: SubjectList) => (
             <Image src="/view.png" alt="" width={16} height={16} className="w-5 h-5" />
           </button>
         </Link> */}
-        {(role === "admin" || role === "teacher") && (
+        {(role === "admin") && (
           <>
             <FormModal table="subject" type="update" data={item} />
             <FormModal table="subject" type="delete" id={item.id} />
