@@ -8,13 +8,13 @@ import {
   ClassSchema,
   subjectSchema,
   SubjectSchema,
-} from "@/lib/formValidationSchema";
+} from "@/lib/formValidationSchemas";
 import {
   createClass,
   createSubject,
   updateClass,
   updateSubject,
-} from "@/lib/action";
+} from "@/lib/actions";
 import { useFormState } from "react-dom";
 import { Dispatch, SetStateAction, useEffect } from "react";
 import { toast } from "react-toastify";

@@ -1,6 +1,6 @@
 "use server"
 
-import { ClassSchema, SubjectSchema } from "./formValidationSchema"
+import { ClassSchema, SubjectSchema } from "./formValidationSchemas"
 import prisma from "./prisma"
 
 type CurrentState = { success: boolean; error: boolean; erorr?: undefined; } | { success: boolean; erorr: boolean; error?: undefined; }
