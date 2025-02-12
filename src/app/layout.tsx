@@ -4,6 +4,7 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import NextTopLoader from 'nextjs-toploader';
 
 const systemfont = Poppins({
   subsets: ["latin"],
@@ -24,7 +25,12 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={systemfont.className}>{
+        <body className={systemfont.className}>
+        <NextTopLoader 
+        height={10}
+        color="#CFCEFF"
+        />
+          {
           children}
           <ToastContainer
             position="bottom-right"
