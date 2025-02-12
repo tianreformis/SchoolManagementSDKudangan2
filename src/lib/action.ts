@@ -79,10 +79,8 @@ export const createClass= async (
   data: ClassSchema
 ) => {
   try {
-    await prisma.subject.create({
-      data: {
-      }
-
+    await prisma.class.create({
+      data
     });
     // revalidatePath("/list/class");
     return { success: true, error: false }
@@ -101,9 +99,7 @@ export const updateClass = async (
       where: {
         id: data.id,
       },
-      data: {
-        
-      },
+      data    
     });
 
     // revalidatePath("/list/class");

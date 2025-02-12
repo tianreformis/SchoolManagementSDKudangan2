@@ -58,8 +58,8 @@ const forms: {
 
   ) => JSX.Element;
 } = {
-  teacher: (setOpen, type, data) => <TeacherForm type={type} data={data} relatedData={relatedData} />,
-  student: (setOpen, type, data, relatedData) => <StudentForm type={type} data={data} relatedData={relatedData} />,
+  // teacher: (setOpen, type, data) => <TeacherForm type={type} data={data} relatedData={relatedData} />,
+  // student: (setOpen, type, data, relatedData) => <StudentForm type={type} data={data} relatedData={relatedData} />,
   announcement: (setOpen, type, data) => <AnnouncementForm type={type} data={data} />,
   assignment: (setOpen, type, data) => <AssginmentForm type={type} data={data} />,
   attendace: (setOpen, type, data) => <AttendaceForm type={type} data={data} />,
@@ -67,7 +67,7 @@ const forms: {
   event: (setOpen, type, data) => <EventForm type={type} data={data} />,
   exam: (setOpen, type, data) => <ExamForm type={type} data={data} />,
   lesson: (setOpen, type, data) => <LessonForm type={type} data={data} />,
-  result: (setOpen, type, data) => <ResultForm type={type} data={data} relatedData={relatedData} />,
+  // result: (setOpen, type, data) => <ResultForm type={type} data={data} relatedData={relatedData} />,
 
   subject: (setOpen, type, data, relatedData) => (
     <SubjectForm
@@ -120,7 +120,13 @@ const FormModal = ({
         toast(`${table === "subject" ? "Mata pelajaran" : table} sudah dihapus!`);
         setOpen(false);
         router.refresh();
+      } 
+      else if (state.error) {
+        toast.error("Gagal menghapus data,  kemungkinan kelas berisi siswa atau guru yang sedang aktif");
+        setOpen(false);
+        router.refresh();
       }
+ 
     }, [state, router]);
 
     return type === "delete" && id ? (
