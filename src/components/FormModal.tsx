@@ -7,6 +7,7 @@ import { useFormState } from "react-dom";
 import { deleteSubject } from "@/lib/action";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { FormContainerProps } from "./FormContainer";
 
 const deleteActionMap = {
   subject: deleteSubject,
@@ -45,10 +46,16 @@ const ParentForm = dynamic(() => import("./Forms/ParentForm"));
 
 
 const forms: {
-  [key: string]: (setOpen: Dispatch<SetStateAction<boolean>>, type: "create" | "update", data?: any) => JSX.Element;
+  [key: string]: (
+    setOpen: Dispatch<SetStateAction<boolean>>,
+    type: "create" | "update",
+    data?: any,
+    relatedData?: any,
+
+  ) => JSX.Element;
 } = {
-  teacher: (setOpen, type, data) => <TeacherForm type={type} data={data} />,
-  student: (setOpen, type, data) => <StudentForm type={type} data={data} />,
+  teacher: (setOpen, type, data) => <TeacherForm type={type} data={data} relatedData={relatedData} />,
+  student: (setOpen, type, data, relatedData) => <StudentForm type={type} data={data} relatedData={relatedData} />,
   announcement: (setOpen, type, data) => <AnnouncementForm type={type} data={data} />,
   assignment: (setOpen, type, data) => <AssginmentForm type={type} data={data} />,
   attendace: (setOpen, type, data) => <AttendaceForm type={type} data={data} />,
@@ -56,37 +63,28 @@ const forms: {
   event: (setOpen, type, data) => <EventForm type={type} data={data} />,
   exam: (setOpen, type, data) => <ExamForm type={type} data={data} />,
   lesson: (setOpen, type, data) => <LessonForm type={type} data={data} />,
-  result: (setOpen, type, data) => <ResultForm type={type} data={data} />,
-  subject: (setOpen, type, data) => (
+  result: (setOpen, type, data) => <ResultForm type={type} data={data} relatedData={relatedData} />,
+  subject: (setOpen, type, data, relatedData) => (
     <SubjectForm
-      type={type}
+      type={type} 
       data={data}
       setOpen={setOpen}
+      relatedData={relatedData}
     />
   ),
   parent: (setOpen, type, data) => <ParentForm type={type} data={data} />,
   //...more form components for other tables...
 }
 
-const FormModal = ({ table, type, data, id }: {
-  table:
-  | "teacher"
-  | "student"
-  | "parent"
-  | "subject"
-  | "class"
-  | "lesson"
-  | "exam"
-  | "assignment"
-  | "result"
-  | "attendance"
-  | "event"
-  | "announcement";
-  type: "update" | "delete" | "create";
-  data?: any; //data akan fetch dari database
-
-  id?: number | string;
-}) => {
+const FormModal = ({
+  table,
+  type,
+  data,
+  id,
+  relatedData,
+}:
+  FormContainerProps & { relatedData?: any }
+) => {
   const size = type === "create" ? "h-8 w-8" : "h-7 w-7";
   const bgcolor =
     type === "create"
@@ -122,7 +120,7 @@ const FormModal = ({ table, type, data, id }: {
         <button className="bg-red-700 text-white py-2 px-4 rounded-md border-none w-max self-center">Hapus...</button>
       </form>
     ) : type === "create" || type === "update" ? (
-      forms[table](setOpen, type, data)
+      forms[table](setOpen, type, data, relatedData)
     ) : (
       "Forms not found"
     )
