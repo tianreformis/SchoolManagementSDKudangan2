@@ -74,14 +74,14 @@ const ClassForm = ({
 
       <div className="flex justify-between flex-wrap gap-4">
         <InputField
-          label="Class name"
+          label="Nama Kelas"
           name="name"
           defaultValue={data?.name}
           register={register}
           error={errors?.name}
         />
         <InputField
-          label="Capacity"
+          label="Kapasitas"
           name="capacity"
           defaultValue={data?.capacity}
           register={register}
@@ -98,7 +98,7 @@ const ClassForm = ({
           />
         )}
         <div className="flex flex-col gap-2 w-full md:w-1/4">
-          <label className="text-xs text-gray-500">Supervisor</label>
+          <label className="text-xs text-gray-500">Wali Kelas</label>
           <select
             className="ring-[1.5px] ring-gray-300 p-2 rounded-md text-sm w-full"
             {...register("supervisorId")}
@@ -123,7 +123,7 @@ const ClassForm = ({
           )}
         </div>
         <div className="flex flex-col gap-2 w-full md:w-1/4">
-          <label className="text-xs text-gray-500">Grade</label>
+          <label className="text-xs text-gray-500">Tingkatan</label>
           <select
             className="ring-[1.5px] ring-gray-300 p-2 rounded-md text-sm w-full"
             {...register("gradeId")}
@@ -147,10 +147,10 @@ const ClassForm = ({
         </div>
       </div>
       {state.error && (
-        <span className="text-red-500">Something went wrong!</span>
+        <span className="text-red-500">Ada yang salah!</span>
       )}
       <button className="bg-blue-400 text-white p-2 rounded-md">
-        {type === "create" ? "Create" : "Update"}
+        {type === "create" ? "Buat" : "Perbarui"}
       </button>
     </form>
   );
