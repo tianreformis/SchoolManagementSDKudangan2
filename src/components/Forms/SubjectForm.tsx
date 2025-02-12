@@ -104,7 +104,9 @@ const SubjectForms = ({
       </div>
 
     </div>
-    {state.erorr && <span className="text-xs text-red-500">Ada yang salah </span>}
+    {state.erorr && (
+      <span className="text-xs text-red-500">Ada yang salah </span>
+    )}
     <button className="bg-blue-400 rounded-md py-2 text-white hover:bg-blue-300">
       {type === "create" ? "Create" : "Update"}
     </button>

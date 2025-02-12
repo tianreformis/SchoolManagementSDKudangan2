@@ -1,3 +1,4 @@
+import FormContainer from "@/components/FormContainer"
 import FormModal from "@/components/FormModal"
 import Pagination from "@/components/Pagination"
 import Table from "@/components/Table"
@@ -78,7 +79,7 @@ const renderRow = (item: TeacherList) => (
           </button>
         </Link>
         {role === "admin" && (
-          <FormModal table="teacher" type="delete" id={item.id} />
+          <FormContainer table="teacher" type="delete" id={item.id} />
         )}
       </div>
     </td>
@@ -146,7 +147,7 @@ const TeachersListsPage = async ({
               <Image src="/sort.png" alt="" width={14} height={14} />
             </button>
             {role === "admin" && (
-              <FormModal table="teacher" type="create" />
+              <FormContainer table="teacher" type="create" />
             )}
 
 
