@@ -90,8 +90,10 @@ const SubjectForms = ({
         >
           {teachers.map((teacher: { id: string; name: string; surname: string }) =>
           (
-            <option value="male">Male</option>
-          ) 
+            <option value={teacher.id} key={teacher.id}>
+              {teacher.name + " " + teacher.surname}
+            </option>
+          )
           )}
 
           {errors.teachers?.message &&
