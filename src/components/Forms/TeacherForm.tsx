@@ -98,7 +98,7 @@ const TeacherForms = ({
     <div className="flex jusify-between flex-wrap gap-4">
       <InputField
         type="text"
-        name="firstName"
+        name="name"
         label="First Name"
         register={register}
         defaultValue={data?.name}
@@ -106,7 +106,7 @@ const TeacherForms = ({
       />
       <InputField
         type="text"
-        name="lastName"
+        name="surname"
         label="Last Name"
         register={register}
         defaultValue={data?.surname}
@@ -139,7 +139,7 @@ const TeacherForms = ({
       />
       <InputField
         type="date"
-        name="birthDay"
+        name="birthday"
         label="Birth Day"
         register={register}
         defaultValue={data?.birthday}
