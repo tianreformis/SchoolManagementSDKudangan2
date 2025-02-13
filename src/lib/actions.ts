@@ -174,16 +174,42 @@ export const updateTeacher = async (
   currentState: CurrentState,
   data: TeacherSchema
 ) => {
+  if (!data.id){
+   return {success:false, error :true} 
+  }
   try {
-    await prisma.teacher.update({
-      where: {
-        id: data.id,
-      },
-      data :{
-        id: data.id?.toString(),
-      }   
+    const client = await clerkClient(); // Await the promise to get the client object
+    console.log(client);
+    const user = await client.users.updateUser(data.id,{ // Access the users property on the resolved client object
+      username: data.username,
+      ...(data.password !=="" && {password : data.password}),
+      firstName: data.name,
+      lastName: data.surname,
+      publicMetadata: { role: "teacher" }
     });
-
+    await prisma.teacher.update({
+      where : {
+        id : data.id,
+      },
+      data:{
+        ...(data.password !=="" && {password : data.password}),
+        id : user.id,
+        username: data.username,
+        name: data.name,
+        surname: data.surname,
+        email: data.email || null, 
+        phone: data.phone || null,
+        address: data.address,
+        img: data.img || null,
+        bloodType: data.bloodType,
+        sex: data.sex,
+        subjects: {
+          set: data.subjects?.map((subjectId:string) => ({ 
+            id: parseInt(subjectId)
+          }))
+        }
+      }
+    });
     // revalidatePath("/list/teacher");
     return { success: true, error: false };
   } catch (err) {
@@ -202,7 +228,10 @@ export const deleteTeacher= async (
       where: {
         id: id,
       },
+
     });
+    const client = await clerkClient();
+    await client.users.deleteUser(id);
 
     // revalidatePath("/list/teacher");
     return { success: true, error: false };

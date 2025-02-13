@@ -15,27 +15,27 @@ const SingleTeacherPage = async ({ params: { id } }: { params: { id: string } })
 
   const { sessionClaims } = await auth();
   const role = (sessionClaims?.metadata as { role?: string })?.role;
-  
-  const teacher: Teacher 
-  & {
-    _count : {
-      subjects: number,
-      lessons: number,
-      classes : number,
-    }
-  }
-  | null = await prisma.teacher.findUnique({
-    where: { id },
-    include :{
+
+  const teacher: Teacher
+    & {
       _count: {
-        select:{
-          subjects: true,
-          lessons: true,
-          classes : true,
-        }
+        subjects: number,
+        lessons: number,
+        classes: number,
       }
     }
-  });
+    | null = await prisma.teacher.findUnique({
+      where: { id },
+      include: {
+        _count: {
+          select: {
+            subjects: true,
+            lessons: true,
+            classes: true,
+          }
+        }
+      }
+    });
 
   if (!teacher) {
     return notFound();
@@ -51,7 +51,7 @@ const SingleTeacherPage = async ({ params: { id } }: { params: { id: string } })
           <div className="bg-lamaSky py-6 px-4 rounded-md flex-1 flex gap-4">
             <div className="w-1/3">
               <Image
-                src={teacher.img || "/noAvatar.png"}
+                src={teacher.img || "/avatar.png"}
                 alt=""
                 width={144}
                 height={144}
@@ -84,7 +84,7 @@ const SingleTeacherPage = async ({ params: { id } }: { params: { id: string } })
                 </div>
                 <div className="w-full md:w-1/3 lg:w-full 2xl:w-1/3 flex items-center gap-2">
                   <Image src="/phone.png" alt="" width={14} height={14} />
-                  <span>{teacher.phone}</span>
+                  <span>{teacher.phone || "-"}</span>
                 </div>
               </div>
 
@@ -145,7 +145,7 @@ const SingleTeacherPage = async ({ params: { id } }: { params: { id: string } })
               />
               <div className="">
                 <h1 className="text-xl font-semibold">{teacher._count.classes}</h1>
-                <span className="text-sm text-gray-400">Classe</span>
+                <span className="text-sm text-gray-400">Classes</span>
               </div>
             </div>
           </div>
@@ -153,7 +153,7 @@ const SingleTeacherPage = async ({ params: { id } }: { params: { id: string } })
         {/* Bottom */}
         <div className="mt-4 bg-white rounded-md p-4 h-[800px]">
           <h1> Teacher Schedule</h1>
-          <BigCalendarContainer />
+          {/* <BigCalendarContainer /> */}
         </div>
       </div>
       {/* Right */}
@@ -161,11 +161,11 @@ const SingleTeacherPage = async ({ params: { id } }: { params: { id: string } })
         <div className="bg-white p-4 rounded-md ">
           <h1 className="text-xl font-semibold"></h1>
           <div className="mt-4 flex gap-4 flex-wrap text-xs text-gray-500">
-            <Link href={`/list/classes?supervisorId=${"teacher2"}`} className="p-3 rounded-md bg-lamaSkyLight">Teacher Classes</Link>
-            <Link href={`/list/students?teacherId=${"teacher2"}`} className="p-3 rounded-md bg-lamaPurpleLight">Teacher Student</Link>
-            <Link href={`/list/lessons?teacherId=${"teacher2"}`} className="p-3 rounded-md bg-lamaYellowLight">Teacher Lesson</Link>
-            <Link href={`/list/exams?teacherId=${"teacher2"}`} className="p-3 rounded-md bg-pink-50">Teacher Exam</Link>
-            <Link href={`/list/assignments?teacherId=${"teacher2"}`} className="p-3 rounded-md bg-lamaSkyLight">Teacher Assignment</Link>
+            <Link href={`/list/classes?supervisorId=${teacher.id}`} className="p-3 rounded-md bg-lamaSkyLight">Teacher Classes</Link>
+            <Link href={`/list/students?teacherId=${teacher.id}`} className="p-3 rounded-md bg-lamaPurpleLight">Teacher Student</Link>
+            <Link href={`/list/lessons?teacherId=${teacher.id}`} className="p-3 rounded-md bg-lamaYellowLight">Teacher Lesson</Link>
+            <Link href={`/list/exams?teacherId=${teacher.id}`} className="p-3 rounded-md bg-pink-50">Teacher Exam</Link>
+            <Link href={`/list/assignments?teacherId=${teacher.id}`} className="p-3 rounded-md bg-lamaSkyLight">Teacher Assignment</Link>
           </div>
         </div>
         <Performance />

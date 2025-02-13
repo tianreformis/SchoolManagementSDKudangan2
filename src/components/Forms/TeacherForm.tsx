@@ -134,7 +134,7 @@ const TeacherForm = ({
           name="birthday"
           defaultValue={data?.birthday.toISOString().split("T")[0]}
           register={register}
-          error={errors.birthday}
+          error={errors.birthday} 
           type="date"
         />
         {data && (
