@@ -179,7 +179,9 @@ export const updateTeacher = async (
       where: {
         id: data.id,
       },
-      data    
+      data :{
+        id: data.id?.toString(),
+      }   
     });
 
     // revalidatePath("/list/teacher");
@@ -198,7 +200,7 @@ export const deleteTeacher= async (
   try {
     await prisma.teacher.delete({
       where: {
-        id: parseInt(id),
+        id: id,
       },
     });
 

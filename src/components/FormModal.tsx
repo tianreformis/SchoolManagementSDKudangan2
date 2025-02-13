@@ -126,8 +126,8 @@ const FormModal = ({
         setOpen(false);
         router.refresh();
       }
-      else if (state.error) {
-        toast.error("Gagal menghapus data,  kemungkinan kelas berisi siswa atau guru yang sedang aktif");
+      else if (state.error) {        
+        toast.error("Gagal menghapus data");
         setOpen(false);
         router.refresh();
       }
@@ -178,7 +178,5 @@ const FormModal = ({
     )}
   </>
 }
-
-
 
 export default FormModal;
