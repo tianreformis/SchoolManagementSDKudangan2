@@ -20,6 +20,7 @@ export const classSchema = z.object({
 
 export type ClassSchema = z.infer<typeof classSchema>;
 
+//adding password not required
 export const teacherschema = z.object({
   id: z.string().optional(),
   username: z
