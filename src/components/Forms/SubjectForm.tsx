@@ -10,7 +10,7 @@ import { Dispatch, SetStateAction, useEffect } from "react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 
-const SubjectForms = ({
+const SubjectForm = ({
   type,
   data,
   setOpen,
@@ -21,17 +21,16 @@ const SubjectForms = ({
   setOpen: Dispatch<SetStateAction<boolean>>;
   relatedData?: any;
 }) => {
-
-
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<SubjectSchema>({
     resolver: zodResolver(subjectSchema),
-  })
+  });
 
-  // After React 19 it ill be UseActionState
+  // AFTER REACT 19 IT'LL BE USEACTIONSTATE
+
   const [state, formAction] = useFormState(
     type === "create" ? createSubject : updateSubject,
     {
@@ -46,17 +45,16 @@ const SubjectForms = ({
   });
 
   const router = useRouter();
+
   useEffect(() => {
     if (state.success) {
-      toast.success(`Mapel selesai di ${type === "create" ? "Buat" : "Edit"}`);
+      toast(`Subject has been ${type === "create" ? "created" : "updated"}!`);
       setOpen(false);
       router.refresh();
     }
+  }, [state, router, type, setOpen]);
 
-
-  }, [state, type, setOpen, router]);
-
-  const { teachers } = relatedData
+  const { teachers } = relatedData;
 
   return <form className="flex flex-col gap-8" onSubmit={onSubmit}>
     <h1 className="text-xl font-semibold">{type === "create" ? "Buat Mata Pelajaran Baru" : "Edit Mata Pelajaran"}</h1>
@@ -114,4 +112,4 @@ const SubjectForms = ({
   </form>
 }
 
-export default SubjectForms;
+export default SubjectForm;
