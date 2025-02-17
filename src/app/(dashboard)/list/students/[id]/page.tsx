@@ -7,6 +7,8 @@ import { auth } from "@clerk/nextjs/server"
 import prisma from "@/lib/prisma"
 import { Class, Student, Teacher } from "@prisma/client"
 import { notFound } from "next/navigation"
+import { Suspense } from "react"
+import StudentAttendanceCard from "@/components/StudentAttendanceCard"
 
 
 const SingleStudentPage = async ({ params: { id } }: { params: { id: string } }) => {
@@ -17,7 +19,7 @@ const SingleStudentPage = async ({ params: { id } }: { params: { id: string } })
 
   const student:
     | (Student & {
-      class: (Class & {_count :{lessons :number}})
+      class: (Class & { _count: { lessons: number } })
     })
     | null = await prisma.student.findUnique({
       where: { id },
@@ -86,10 +88,16 @@ const SingleStudentPage = async ({ params: { id } }: { params: { id: string } })
                 height={24}
                 className="w-6 h-6"
               />
-              <div className="">
-                <h1 className="text-xl font-semibold">90%</h1>
-                <span className="text-sm text-gray-400">Attendence</span>
-              </div>
+              {/* Attendace Card */}
+              <Suspense
+                fallback="Loading..."
+
+              >
+                <StudentAttendanceCard
+                  id={student.id}
+                />
+              </Suspense>
+
             </div>
             {/* Card */}
             <div className="bg-white p-4 rounded-md flex gap-4 w-full md:w-[48%] xl:w-[45%] 2xl:w-[48%]">
