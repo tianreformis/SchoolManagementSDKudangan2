@@ -44,7 +44,7 @@ const columns = [
 
 ];
 
-const renderRow = (item: StudentList) => (
+const renderRow = (item: StudentList) => (  
   <tr key={item.id} className="border-b border-gray-200 even:bg-slate-50 text-sm hover:bg-lamaPurpleLight">
     <td className="flex items-center gap-4">
       <Image src={item.img || "/avatar.png"}
@@ -79,11 +79,13 @@ const renderRow = (item: StudentList) => (
 
   </tr >
 );
+
 const StudentListsPage = async ({
   searchParams,
 }: {
   searchParams: { [key: string]: string | undefined };
 }) => {
+  
 
   const { page, ...qeuryParams } = searchParams;
   const p = page ? parseInt(page) : 1;

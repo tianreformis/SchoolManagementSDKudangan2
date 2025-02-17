@@ -6,33 +6,22 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { error } from "console";
 import InputField from "../InputField";
 import Image from "next/image";
+import { studentSchema, StudentSchema } from "@/lib/formValidationSchemas";
+import { Dispatch, SetStateAction } from "react";
 
 
-const schema = z.object({
-  username: z
-    .string()
-    .min(3, { message: "Username atleast 3 characters" })
-    .max(20, { message: "Username max 20 characters" }),
-  email: z.string().email({ message: "Invalid Email Address" }),
-  password: z.string().min(8, { message: "Password must be 8 characters" }),
-  firstName: z.string().min(3, { message: "First Name must be 3 characters" }),
-  lastName: z.string().min(3, { message: "Last Name must be 3 characters" }),
-  phone: z.string().min(10, { message: "Phone is Required" }),
-  address: z.string().min(1, { message: "Address is Required" }),
-  bloodType: z.string().min(1, { message: "Blood Type is Required" }),
-  birthday: z.date({ message: "Birthday is Required" }),
-  sex: z.enum(["Male", "Female"], { message: "Sex is Required" }),
-  img: z.instanceof(File, { message: "Image is Required" }),
-});
 
-type Inputs = z.infer<typeof schema>;
 
 const StudentForms = ({
-  type,
-  data
+ type,
+  data,
+  setOpen,
+  relatedData,
 }: {
-  type: "create" | "update"
-  data?: any
+  type: "create" | "update";
+  data?: any;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+  relatedData?: any;
 }) => {
 
 
@@ -40,8 +29,8 @@ const StudentForms = ({
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Inputs>({
-    resolver: zodResolver(schema),
+  } = useForm<StudentSchema>({
+    resolver: zodResolver(studentSchema),
   })
 
   const onSubmit = handleSubmit(data => {

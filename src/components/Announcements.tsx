@@ -1,5 +1,6 @@
 import prisma from "@/lib/prisma"
 import { auth } from "@clerk/nextjs/server";
+import Link from "next/link";
 
 const Announcements = async () => {
   const { userId, sessionClaims } = await auth();
@@ -28,7 +29,7 @@ const Announcements = async () => {
     <div className="bg-white rounded-md p-4">
       <div className="flex items-center justify-between">
         <h1 className="text-xl font-semibold">Announcements</h1>
-        <span>View All</span>
+        <Link href={"/list/announcements"}>View All</Link>
 
       </div>
       <div className="flex flex-col gap-4 mt-4">

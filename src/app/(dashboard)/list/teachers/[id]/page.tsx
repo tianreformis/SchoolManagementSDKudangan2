@@ -5,13 +5,13 @@ import Link from "next/link"
 import prisma from "@/lib/prisma"
 import { Teacher } from "@prisma/client"
 import { notFound } from "next/navigation"
-// import { role } from "@/lib/utils"
 import BigCalendarContainer from "@/components/BigCalendarContainer"
 import FormContainer from "@/components/FormContainer"
 import { auth } from "@clerk/nextjs/server"
 
 
 const SingleTeacherPage = async ({ params: { id } }: { params: { id: string } }) => {
+
 
   const { sessionClaims } = await auth();
   const role = (sessionClaims?.metadata as { role?: string })?.role;
@@ -153,7 +153,7 @@ const SingleTeacherPage = async ({ params: { id } }: { params: { id: string } })
         {/* Bottom */}
         <div className="mt-4 bg-white rounded-md p-4 h-[800px]">
           <h1> Teacher Schedule</h1>
-          {/* <BigCalendarContainer /> */}
+          <BigCalendarContainer type="teacherId" id={teacher.id!} />
         </div>
       </div>
       {/* Right */}
