@@ -3,9 +3,43 @@ import Performance from "@/components/Performance"
 import BigCalendar from "@/components/BigCalendar"
 import Image from "next/image"
 import Link from "next/link"
+import BigCalendarContainer from "@/components/BigCalendarContainer"
+import { auth } from "@clerk/nextjs/server"
+import { Teacher } from "@prisma/client"
+import prisma from "@/lib/prisma"
+import { notFound } from "next/navigation"
 
 
-const SingleStudentPage = () => {
+const SingleStudentPage = async ({ params: { id } }: { params: { id: string } }) => {
+
+  const { sessionClaims } = await auth();
+  const role = (sessionClaims?.metadata as { role?: string })?.role;
+
+  const teacher: Teacher
+    & {
+      _count: {
+        subjects: number,
+        lessons: number,
+        classes: number,
+      }
+    }
+    | null = await prisma.teacher.findUnique({
+      where: { id },
+      include: {
+        _count: {
+          select: {
+            subjects: true,
+            lessons: true,
+            classes: true,
+          }
+        }
+      }
+    });
+
+  if (!teacher) {
+    return notFound();
+  }
+
   return (
     <div className="flex-1 flex flex-col gap-4 xl:flex-row">
       {/* Left */}
@@ -110,7 +144,7 @@ const SingleStudentPage = () => {
         {/* Bottom */}
         <div className="mt-4 bg-white rounded-md p-4 h-[800px]">
           <h1> Student Schedule</h1>
-          <BigCalendar />
+          <BigCalendarContainer type="classId" id={2} />
         </div>
       </div>
       {/* Right */}
