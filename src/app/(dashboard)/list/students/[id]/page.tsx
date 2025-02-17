@@ -91,7 +91,6 @@ const SingleStudentPage = async ({ params: { id } }: { params: { id: string } })
               {/* Attendace Card */}
               <Suspense
                 fallback="Loading..."
-
               >
                 <StudentAttendanceCard
                   id={student.id}
@@ -146,7 +145,7 @@ const SingleStudentPage = async ({ params: { id } }: { params: { id: string } })
         {/* Bottom */}
         <div className="mt-4 bg-white rounded-md p-4 h-[800px]">
           <h1> Student Schedule</h1>
-          <BigCalendarContainer type="classId" id={userId!} />
+          <BigCalendarContainer type="classId" id={student.class.id} />
         </div>
       </div>
       {/* Right */}

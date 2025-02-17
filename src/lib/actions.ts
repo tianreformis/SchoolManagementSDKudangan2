@@ -245,7 +245,20 @@ export const createStudent= async (
   currentState: CurrentState,
   data: StudentSchema
 ) => {
+  
   try {
+    const classItem = await prisma.class.findUnique({
+      where: {
+        id : data.classId},
+        include : {_count : {select :{students : true}}},      
+    });
+
+    if (classItem && classItem.capacity === classItem._count.students) {
+      return { success: false, error: true };
+    }
+
+    
+
     const client = await clerkClient(); // Await the promise to get the client object
     console.log(client);
     const user = await client.users.createUser({ // Access the users property on the resolved client object
@@ -257,7 +270,7 @@ export const createStudent= async (
     });
     await prisma.student.create({
       data:{
-        id : user.id,
+       id : user.id,
         username: data.username,
         name: data.name,
         surname: data.surname,
@@ -267,11 +280,11 @@ export const createStudent= async (
         img: data.img || null,
         bloodType: data.bloodType,
         sex: data.sex,
-        // class: {
-        //   connect: data.class?.map((classId:number) => ({ 
-        //     id: parseInt(classId)
-        //   }))
-        // },
+        birthday : data.birthday,
+        gradeId : data.gradeId,
+        classId : data.classId,
+        parentId : data.parentId
+        
       }
     });
     // revalidatePath("/list/teacher");
@@ -315,11 +328,10 @@ export const updateStudent = async (
         img: data.img || null,
         bloodType: data.bloodType,
         sex: data.sex,
-        class: {
-          update: data.classes?.map((classId:string) => ({ 
-            id: parseInt(classId)
-          }))
-        }
+        birthday : data.birthday,
+        gradeId : data.gradeId,
+        classId : data.classId,
+        parentId : data.parentId,
       }
     });
     // revalidatePath("/list/teacher");

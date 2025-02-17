@@ -153,7 +153,7 @@ const SingleTeacherPage = async ({ params: { id } }: { params: { id: string } })
         {/* Bottom */}
         <div className="mt-4 bg-white rounded-md p-4 h-[800px]">
           <h1> Teacher Schedule</h1>
-          <BigCalendarContainer type="teacherId" id={teacher.id!} />
+          <BigCalendarContainer type="teacherId" id={teacher.id} />
         </div>
       </div>
       {/* Right */}
