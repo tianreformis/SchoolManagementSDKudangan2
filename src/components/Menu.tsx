@@ -10,37 +10,37 @@ const menuItems = [
     items: [
       {
         icon: "/home.png",
-        label: "Home",
+        label: "Halaman Awal",
         href: "/",
         visible: ["admin", "teacher", "student", "parent"],
       },
       {
         icon: "/teacher.png",
-        label: "Teachers",
+        label: "Daftar Guru",
         href: "/list/teachers",
         visible: ["admin", "teacher"],
       },
       {
         icon: "/student.png",
-        label: "Students",
+        label: "Daftar Murid",
         href: "/list/students",
         visible: ["admin", "teacher"],
       },
       {
         icon: "/parent.png",
-        label: "Parents",
+        label: "Orang Tua",
         href: "/list/parents",
         visible: ["admin", "teacher"],
       },
       {
         icon: "/subject.png",
-        label: "Subjects",
+        label: "Mata Pelajaran",
         href: "/list/subjects",
         visible: ["admin"],
       },
       {
         icon: "/class.png",
-        label: "Classes",
+        label: "Daftar Kelas",
         href: "/list/classes",
         visible: ["admin", "teacher"],
       },
@@ -64,31 +64,31 @@ const menuItems = [
       },
       {
         icon: "/result.png",
-        label: "Results",
+        label: "Nilai",
         href: "/list/results",
         visible: ["admin", "teacher", "student", "parent"],
       },
       {
         icon: "/attendance.png",
-        label: "Attendance",
+        label: "Kehadiran",
         href: "/list/attendance",
         visible: ["admin", "teacher", "student", "parent"],
       },
       {
         icon: "/calendar.png",
-        label: "Events",
+        label: "Acara",
         href: "/list/events",
         visible: ["admin", "teacher", "student", "parent"],
       },
       {
         icon: "/message.png",
-        label: "Messages",
+        label: "Pesan",
         href: "/list/messages",
         visible: ["admin", "teacher", "student", "parent"],
       },
       {
         icon: "/announcement.png",
-        label: "Announcements",
+        label: "Pengumuman",
         href: "/list/announcements",
         visible: ["admin", "teacher", "student", "parent"],
       },
@@ -99,19 +99,19 @@ const menuItems = [
     items: [
       {
         icon: "/profile.png",
-        label: "Profile",
+        label: "Profil",
         href: "/profile",
         visible: ["admin", "teacher", "student", "parent"],
       },
       {
         icon: "/setting.png",
-        label: "Settings",
+        label: "Pengaturan",
         href: "/settings",
         visible: ["admin", "teacher", "student", "parent"],
       },
       {
         icon: "/logout.png",
-        label: "Logout",
+        label: "Keluar",
         href: "/logout",
         visible: ["admin", "teacher", "student", "parent"],
       },
@@ -137,7 +137,7 @@ const Menu = async () => {
     <div className="mt-4 text-sm">
       {menuItems.map((i) => (
         <div className="flex flex-col gap-2" key={i.title}>
-          <span className="hidden lg:block text-gray-400 font-light my-4">
+          <span className="hidden md:hidden xl:block  text-gray-400 font-light my-4">
             {i.title}
           </span>
           {i.items.map((item) => {
