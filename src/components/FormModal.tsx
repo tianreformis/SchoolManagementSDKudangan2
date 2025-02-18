@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { useFormState } from "react-dom";
-import { deleteClass, deleteSubject, deleteTeacher } from "@/lib/actions";
+import { deleteClass, deleteStudent, deleteSubject, deleteTeacher } from "@/lib/actions";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { FormContainerProps } from "./FormContainer";
@@ -18,7 +18,7 @@ const deleteActionMap = {
   exam: deleteSubject,
   lesson: deleteSubject,
   result: deleteSubject,
-  student: deleteSubject,
+  student: deleteStudent,
   parent: deleteSubject,
   teacher: deleteTeacher,
   announcement: deleteSubject,
@@ -57,7 +57,7 @@ const forms: {
   ) => JSX.Element;
 } = {
 
-  // student: (setOpen, type, data, relatedData) => <StudentForm type={type} data={data} relatedData={relatedData} />,
+
   announcement: (setOpen, type, data) => <AnnouncementForm type={type} data={data} />,
   assignment: (setOpen, type, data) => <AssginmentForm type={type} data={data} />,
   attendace: (setOpen, type, data) => <AttendaceForm type={type} data={data} />,
@@ -67,6 +67,13 @@ const forms: {
   lesson: (setOpen, type, data) => <LessonForm type={type} data={data} />,
   // result: (setOpen, type, data) => <ResultForm type={type} data={data} relatedData={relatedData} />,
   parent: (setOpen, type, data) => <ParentForm type={type} data={data} />,
+  student: (setOpen, type, data, relatedData) =>
+    <StudentForm
+      type={type} 
+      data={data}
+      setOpen={setOpen}
+      relatedData={relatedData}
+    />,
   subject: (setOpen, type, data, relatedData) => (
     <SubjectForm
       type={type}
@@ -126,7 +133,7 @@ const FormModal = ({
         setOpen(false);
         router.refresh();
       }
-      else if (state.error) {        
+      else if (state.error) {
         toast.error("Gagal menghapus data");
         setOpen(false);
         router.refresh();

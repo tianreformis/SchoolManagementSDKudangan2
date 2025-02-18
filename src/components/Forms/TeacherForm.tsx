@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import InputField from "../InputField";
 import Image from "next/image";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { teacherschema, TeacherSchema } from "@/lib/formValidationSchemas";
+import { teacherSchema, TeacherSchema } from "@/lib/formValidationSchemas";
 import { useFormState } from "react-dom";
 import { createTeacher, updateTeacher } from "@/lib/actions";
 import { useRouter } from "next/navigation";
@@ -28,7 +28,7 @@ const TeacherForm = ({
     handleSubmit,
     formState: { errors },
   } = useForm<TeacherSchema>({
-    resolver: zodResolver(teacherschema),
+    resolver: zodResolver(teacherSchema),
   });
 
   const [img, setImg] = useState<any>();
@@ -132,9 +132,9 @@ const TeacherForm = ({
         <InputField
           label="Birthday"
           name="birthday"
-          defaultValue={data?.birthday.toISOString().split("T")[0]}
+          defaultValue={data?.birthday?.toISOString().split("T")[0] ?? ""}
           register={register}
-          error={errors.birthday} 
+          error={errors.birthday}
           type="date"
         />
         {data && (
