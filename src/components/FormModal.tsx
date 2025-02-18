@@ -67,6 +67,7 @@ const forms: {
   lesson: (setOpen, type, data) => <LessonForm type={type} data={data} />,
   // result: (setOpen, type, data) => <ResultForm type={type} data={data} relatedData={relatedData} />,
   parent: (setOpen, type, data) => <ParentForm type={type} data={data} />,
+  
   student: (setOpen, type, data, relatedData) =>
     <StudentForm
       type={type} 

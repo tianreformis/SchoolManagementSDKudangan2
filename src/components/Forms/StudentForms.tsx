@@ -49,7 +49,6 @@ const StudentForm = ({
   );
 
   const onSubmit = handleSubmit((data) => {
-    console.log("hello");
     console.log(data);
     formAction({ ...data, img: img?.secure_url });
   });
@@ -231,11 +230,12 @@ const StudentForm = ({
                 _count: { students: number };
               }) => (
                 <option value={classItem.id} key={classItem.id}>
-                  ({classItem.name} -{" "}
+                  ({classItem.name} - {" "}
                   {classItem._count.students + "/" + classItem.capacity}{" "}
                   Capacity)
                 </option>
-              )
+                
+              ),
             )}
           </select>
           {errors.classId?.message && (
