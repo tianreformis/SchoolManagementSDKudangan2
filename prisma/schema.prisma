@@ -33,6 +33,7 @@ model Student {
   attendances Attendance[]
   results     Result[]
   birthday    DateTime
+  
 }
 
 model Teacher {

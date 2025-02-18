@@ -309,14 +309,13 @@ export const updateStudent = async (
       ...(data.password !== "" && { password: data.password }),
       firstName: data.name,
       lastName: data.surname,
-      publicMetadata: { role: "student" }
     });
     await prisma.student.update({
       where: {
         id: data.id,
       },
       data: {
-        ...(data.password !== "" && { password: data.password }),
+        // ...(data.password !== "" && { password: data.password }),
         id: user.id,
         username: data.username,
         name: data.name,
