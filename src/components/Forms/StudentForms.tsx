@@ -94,24 +94,24 @@ const StudentForm = ({
         Personal Information
       </span>
       <CldUploadWidget
-          uploadPreset="school"
-          onSuccess={(result, { widget }) => {
-            setImg(result.info);
-            widget.close();
-          }}
-        >
-          {({ open }) => {
-            return (
-              <div
-                className="text-xs text-gray-500 flex items-center gap-2 cursor-pointer"
-                onClick={() => open()}
-              >
-                <Image src="/upload.png" alt="" width={28} height={28} />
-                <span>Upload a photo</span>
-              </div>
-            );
-          }}
-        </CldUploadWidget>
+        uploadPreset="school"
+        onSuccess={(result, { widget }) => {
+          setImg(result.info);
+          widget.close();
+        }}
+      >
+        {({ open }) => {
+          return (
+            <div
+              className="text-xs text-gray-500 flex items-center gap-2 cursor-pointer"
+              onClick={() => open()}
+            >
+              <Image src="/upload.png" alt="" width={28} height={28} />
+              <span>Upload a photo</span>
+            </div>
+          );
+        }}
+      </CldUploadWidget>
       <div className="flex justify-between flex-wrap gap-4">
         <InputField
           label="First Name"
@@ -217,11 +217,12 @@ const StudentForm = ({
               _count: { students: number };
             }) => (
               <option value={classItem.id} key={classItem.id}>
-                ({classItem.name} - {classItem._count.students+"/"+classItem.capacity}
+                ({classItem.name} - {classItem._count.students + "/" + classItem.capacity}
                 {" "}
                 Capacity)
               </option>
-            ))}
+            )
+            )}
           </select>
           {errors.classId?.message && (
             <p className="text-xs text-red-400">
@@ -229,7 +230,7 @@ const StudentForm = ({
             </p>
           )}
         </div>
-        
+
       </div>
       {state.error && (
         <span className="text-red-500">Something went wrong!</span>
