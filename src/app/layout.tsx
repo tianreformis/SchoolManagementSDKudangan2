@@ -24,18 +24,20 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
+
       <html lang="en">
         <body className={systemfont.className}>
-        <NextTopLoader 
-        height={10}
-        color="#CFCEFF"
-        />
-          {
-          children}
+          <NextTopLoader
+            height={10}
+            color="#CFCEFF"
+          />
+          {/* <ThemeProvider> */}
+          {children}
+          {/* </ThemeProvider> */}
           <ToastContainer
             position="bottom-right"
             theme="dark"
-            autoClose={3000}          
+            autoClose={3000}
           />
         </body>
       </html>
