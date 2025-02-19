@@ -423,8 +423,8 @@ export const updateExam = async (
     }
 
     await prisma.exam.update({
-      where : {
-        id : data.id,
+      where: {
+        id: data.id,
       },
       data: {
         title: data.title,
@@ -489,9 +489,7 @@ export const createParent = async (
         phone: data.phone || null,
         address: data.address,
         students: {
-          connect: data.students?.map((studentId : string) => ({
-            id: studentId
-          }))
+          connect: data.students?.map((studentId) => ({ id: studentId }))
         }
       }
     });
@@ -503,7 +501,7 @@ export const createParent = async (
   }
 }
 
-export const updateParent= async (
+export const updateParent = async (
   currentState: CurrentState,
   data: ParentSchema
 ) => {
@@ -531,9 +529,9 @@ export const updateParent= async (
         surname: data.surname,
         email: data.email || null,
         phone: data.phone || "",
-        address: data.address,  
+        address: data.address,
         students: {
-          connect: data.students?.map((studentId : string) => ({
+          set: data.students?.map((studentId: string) => ({
             id: studentId
           }))
         }
@@ -547,7 +545,7 @@ export const updateParent= async (
   }
 };
 
-export const deleteParent= async (
+export const deleteParent = async (
   currentState: CurrentState,
   data: FormData
 ) => {

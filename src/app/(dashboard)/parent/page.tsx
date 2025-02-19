@@ -16,7 +16,7 @@ const ParentPage
       <div className="w-full x:w-2/3">
         <div className="h-full bg-white p-4 rounded-md">
           <h1 className="font-semibold text-xl">Schedule (John Doe)</h1>
-          <BigCalendarContainer type="classId" id={userId!}/>
+          {/* <BigCalendarContainer type="classId" id={userId!}/> */}
         </div>
       </div>
 

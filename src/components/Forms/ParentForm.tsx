@@ -97,7 +97,7 @@ const ParentForm = ({
       </span>
       <div className="flex justify-between flex-wrap gap-4">
         <InputField
-          label="First Name"
+          label="Nama Depan"
           name="name"
           defaultValue={data?.name}
           register={register}
@@ -142,11 +142,11 @@ const ParentForm = ({
             multiple
             className="ring-[1.5px] ring-gray-300 p-2 rounded-md text-sm w-full"
             {...register("students")}
-            defaultValue={data?.students}
+            defaultValue={data?.students.name}
           >
             {students.map((student: { id: string; name: string }) => (
               <option value={student.id} key={student.id}>
-                {student.name}
+                {student.name ? student.name :  "unknown"}
               </option>
             ))}
           </select>
