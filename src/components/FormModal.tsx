@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { useFormState } from "react-dom";
-import { deleteClass, deleteExam, deleteStudent, deleteSubject, deleteTeacher } from "@/lib/actions";
+import { deleteClass, deleteExam, deleteParent, deleteStudent, deleteSubject, deleteTeacher } from "@/lib/actions";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { FormContainerProps } from "./FormContainer";
@@ -19,7 +19,7 @@ const deleteActionMap = {
   lesson: deleteSubject,
   result: deleteSubject,
   student: deleteStudent,
-  parent: deleteSubject,
+  parent: deleteParent,
   teacher: deleteTeacher,
   announcement: deleteSubject,
 }
@@ -39,14 +39,15 @@ const ClassForm = dynamic(() => import("./Forms/ClassForm"), {
 const ExamForm = dynamic(() => import("./Forms/ExamForm"), {
   loading: () => <h1>loading...</h1>,
 });
+const ParentForm = dynamic(() => import("./Forms/ParentForm"), {
+  loading: () => <h1>loading...</h1>,
+});
 const AnnouncementForm = dynamic(() => import("./Forms/AnnouncementForm"));
 const AssginmentForm = dynamic(() => import("./Forms/AssignmentForm"));
 const AttendaceForm = dynamic(() => import("./Forms/AtterndanceForm"));
 const EventForm = dynamic(() => import("./Forms/EventForm"));
-
 const LessonForm = dynamic(() => import("./Forms/LessonForm"));
 const ResultForm = dynamic(() => import("./Forms/ResultForm"));
-const ParentForm = dynamic(() => import("./Forms/ParentForm"));
 
 
 
@@ -69,7 +70,7 @@ const forms: {
 
   lesson: (setOpen, type, data) => <LessonForm type={type} data={data} />,
   // result: (setOpen, type, data) => <ResultForm type={type} data={data} relatedData={relatedData} />,
-  parent: (setOpen, type, data) => <ParentForm type={type} data={data} />,
+
 
   student: (setOpen, type, data, relatedData) =>
     <StudentForm
@@ -102,6 +103,13 @@ const forms: {
     />,
   exam: (setOpen, type, data, relatedData) =>
     <ExamForm
+      type={type}
+      data={data}
+      setOpen={setOpen}
+      relatedData={relatedData}
+    />,
+  parent: (setOpen, type, data, relatedData) =>
+    <ParentForm
       type={type}
       data={data}
       setOpen={setOpen}

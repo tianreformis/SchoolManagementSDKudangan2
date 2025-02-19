@@ -61,7 +61,7 @@ model Parent {
   name      String
   surname   String
   email     String?   @unique
-  phone     String    @unique
+  phone     String?    @unique
   address   String
   createdAt DateTime  @default(now())
   students  Student[]

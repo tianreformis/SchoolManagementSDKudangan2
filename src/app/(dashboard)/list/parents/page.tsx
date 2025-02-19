@@ -1,3 +1,4 @@
+import FormContainer from "@/components/FormContainer"
 import FormModal from "@/components/FormModal"
 import Pagination from "@/components/Pagination"
 import Table from "@/components/Table"
@@ -10,8 +11,6 @@ import Image from "next/image"
 
 
 type ParentList = Parent & { students: Student[] }
-
-
 
 const ParentListsPage = async ({
   searchParams,
@@ -66,8 +65,8 @@ const ParentListsPage = async ({
 
           {role === "admin" && (
             <>
-              <FormModal table="parent" type="update" data={item} />
-              <FormModal table="parent" type="delete" id={item.id} />
+              <FormContainer table="parent" type="update" data={item} />
+              <FormContainer table="parent" type="delete" id={item.id} />
             </>
           )}
         </div>
@@ -112,7 +111,7 @@ const ParentListsPage = async ({
     <div className="bg-white p-4 rounded-md flex-1 m-4 mt-0">
       {/* Top */}
       <div className="flex items-center justify-between">
-        <h1 className="hidden md:block text-lg font-semibold">Parents List</h1>
+        <h1 className="hidden md:block text-lg font-semibold">Daftar Orang Tua</h1>
         <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto">
           <TableSearch />
           <div className="flex items-center gap-4 self-end">
@@ -123,7 +122,7 @@ const ParentListsPage = async ({
               <Image src="/sort.png" alt="" width={14} height={14} />
             </button>
             {role === "admin" && (
-              <FormModal table="parent" type="create" />
+              <FormContainer table="parent" type="create" />
             )}
           </div>
         </div>

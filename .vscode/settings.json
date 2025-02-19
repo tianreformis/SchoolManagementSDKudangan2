@@ -9,7 +9,7 @@
     "editor.rulers": [80, 120],
     "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 1000,
-    "workbench.colorTheme": "Material Theme",
+    "workbench.colorTheme": "Monokai",
     "workbench.iconTheme": "material-icon-theme",
     "terminal.integrated.fontSize": 18,
     "terminal.integrated.fontFamily": "Fira Code",
