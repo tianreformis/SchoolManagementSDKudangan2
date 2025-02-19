@@ -146,7 +146,7 @@ const ParentForm = ({
           >
             {students.map((student: { id: string; name: string }) => (
               <option value={student.id} key={student.id}>
-                {student.name ? student.name :  "unknown"}
+                {student.name}
               </option>
             ))}
           </select>

@@ -59,7 +59,7 @@ const FormContainer = async ({ table, type, data, id }: FormContainerProps) => {
         relatedData = { classes: studentClasses, grades: studentGrades };
         break;
       case "exam":
-        const { userId, sessionClaims } = await auth();
+        const { userId, sessionClaims }   = await auth();
         const role = (
           sessionClaims?.metadata as {
             role?: "admin" | "teacher" | "student" | "parent"

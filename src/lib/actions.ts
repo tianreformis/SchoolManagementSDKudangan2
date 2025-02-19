@@ -329,7 +329,7 @@ export const updateStudent = async (
         birthday: data.birthday,
         gradeId: data.gradeId,
         classId: data.classId,
-        parentId: data.parentId,
+        parentId: data.parentId || null,
       }
     });
     // revalidatePath("/list/teacher");
@@ -518,6 +518,17 @@ export const updateParent = async (
       lastName: data.surname,
       publicMetadata: { role: "parent" }
     });
+
+
+    await prisma.student.updateMany({
+      where: {
+        parentId: data.id,
+      },
+      data: {
+        parentId: undefined,
+      },
+    });
+
     await prisma.parent.update({
       where: {
         id: data.id,
@@ -528,12 +539,10 @@ export const updateParent = async (
         name: data.name,
         surname: data.surname,
         email: data.email || null,
-        phone: data.phone || "",
+        phone: data.phone || null,
         address: data.address,
         students: {
-          set: data.students?.map((studentId: string) => ({
-            id: studentId
-          }))
+          set: data.students?.map((studentId) => ({ id: studentId })) || []
         }
       }
     });

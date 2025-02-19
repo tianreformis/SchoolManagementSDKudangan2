@@ -54,7 +54,7 @@ export const studentSchema = z.object({
   id: z.string().optional(),
   username: z
     .string()
-    .min(3, { message: "Username must be at least 3 characters long!" })
+    .min(4, { message: "Username must be at least 4 characters long!" })
     .max(20, { message: "Username must be at most 20 characters long!" }),
   password: z
     .string()
@@ -76,7 +76,7 @@ export const studentSchema = z.object({
   sex: z.enum(["MALE", "FEMALE"], { message: "Sex is required!" }),
   gradeId: z.coerce.number().min(1, { message: "Grade is required!" }),
   classId: z.coerce.number().min(1, { message: "Class is required!" }),
-  parentId: z.string().min(1, { message: "Parent Id is required!" }),
+  parentId: z.string({ message: "Parent Id is required!" }).optional(),
 });
 
 export type StudentSchema = z.infer<typeof studentSchema>;
