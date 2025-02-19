@@ -193,7 +193,7 @@ export const updateTeacher = async (
         id: data.id,
       },
       data: {
-        ...(data.password !== "" && { password: data.password }),
+        // ...(data.password !== "" && { password: data.password }),
         id: user.id,
         username: data.username,
         name: data.name,
