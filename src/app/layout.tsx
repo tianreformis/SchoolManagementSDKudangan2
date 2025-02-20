@@ -13,8 +13,8 @@ const systemfont = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Kudangan 2 School Management Dashboard",
-  description: "Next.js School Management System",
+  title: "SD Kudangan 2 Sistem",
+  description: "SD Kudangan 2 Sistem",
 };
 
 export default function RootLayout({
