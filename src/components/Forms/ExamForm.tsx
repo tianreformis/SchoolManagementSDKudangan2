@@ -1,173 +1,125 @@
 "use client"
 
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { error } from "console";
 import InputField from "../InputField";
-import Image from "next/image";
+import { examSchema, ExamSchema, subjectSchema, SubjectSchema } from "@/lib/formValidationSchemas";
+import { createExam, createSubject, updateExam, updateSubject } from "@/lib/actions";
+import { useFormState } from "react-dom";
+import { Dispatch, SetStateAction, useEffect } from "react";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
-
-const schema = z.object({
-  username: z
-    .string()
-    .min(3, { message: "Username atleast 3 characters" })
-    .max(20, { message: "Username max 20 characters" }),
-  email: z.string().email({ message: "Invalid Email Address" }),
-  password: z.string().min(8, { message: "Password must be 8 characters" }),
-  firstName: z.string().min(3, { message: "First Name must be 3 characters" }),
-  lastName: z.string().min(3, { message: "Last Name must be 3 characters" }),
-  phone: z.string().min(10, { message: "Phone is Required" }),
-  address: z.string().min(1, { message: "Address is Required" }),
-  bloodType: z.string().min(1, { message: "Blood Type is Required" }),
-  birthday: z.date({ message: "Birthday is Required" }),
-  sex: z.enum(["Male", "Female"], { message: "Sex is Required" }),
-  img: z.instanceof(File, { message: "Image is Required" }),
-});
-
-type Inputs = z.infer<typeof schema>;
-
-const TeacherForms = ({
+const ExamForm = ({
   type,
-  data
+  data,
+  setOpen,
+  relatedData,
 }: {
-  type: "create" | "update"
-  data?: any
+  type: "create" | "update";
+  data?: any;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+  relatedData?: any;
 }) => {
-
-
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Inputs>({
-    resolver: zodResolver(schema),
-  })
-
-  const onSubmit = handleSubmit(data => {
-    console.log(data);
+  } = useForm<ExamSchema>({
+    resolver: zodResolver(examSchema),
   });
+
+  // AFTER REACT 19 IT'LL BE USEACTIONSTATE
+
+  const [state, formAction] = useFormState(
+    type === "create" ? createExam : updateExam,
+    {
+      success: false,
+      error: false,
+    }
+  );
+
+  const onSubmit = handleSubmit((data) => {
+    console.log(data);
+    formAction(data);
+  });
+
+  const router = useRouter();
+
+  useEffect(() => {
+    if (state.success) {
+      toast(`Exam has been ${type === "create" ? "created" : "updated"}!`);
+      setOpen(false);
+      router.refresh();
+    }
+  }, [state, router, type, setOpen]);
+
+  const { lessons } = relatedData;
+
   return <form className="flex flex-col gap-8" onSubmit={onSubmit}>
-    <h1 className="text-xl font-semibold">Create a new Teacher</h1>
-    <span className="text-sm text-black font-bold ">Authenticantion Information</span>
+    <h1 className="text-xl font-semibold">{type === "create" ? "Buat Mata Tugas" : "Edit Tugas"}</h1>
+    <span className="text-sm text-black font-bold ">Informasi Penting</span>
     <div className="flex jusify-between flex-wrap gap-4">
       <InputField
         type="text"
-        name="username"
-        label="Username"
+        name="name"
+        label="Judul Tugas"
         register={register}
-        defaultValue={data?.username}
-        error={errors?.username}
+        defaultValue={data?.title}
+        error={errors?.title}
       />
       <InputField
-        type="email"
-        name="email"
-        label="Email"
+        name="startTime"
+        label="Tanggal Mulai"
         register={register}
-        defaultValue={data?.email}
-        error={errors?.email}
+        defaultValue={data?.startTime}
+        error={errors?.startTime}
+        type="datetime-local"
       />
       <InputField
-        type="password"
-        name="password"
-        label="Password"
+        name="endTime"
+        label="Tanggal Selesai"
         register={register}
-        defaultValue={data?.password}
-        error={errors?.password}
+        defaultValue={data?.endTime}
+        error={errors?.endTime}
+        type="datetime-local"
       />
-    </div>
-
-    <span className="text-sm text-black font-bold ">Personal Information</span>
-    <div className="flex jusify-between flex-wrap gap-4">
-      <InputField
-        type="text"
-        name="firstName"
-        label="First Name"
-        register={register}
-        defaultValue={data?.firstName}
-        error={errors?.firstName}
-      />
-      <InputField
-        type="text"
-        name="lastName"
-        label="Last Name"
-        register={register}
-        defaultValue={data?.lastName}
-        error={errors?.lastName}
-      />
-      <InputField
-        type="text"
-        name="phone"
-        label="Phone"
-        register={register}
-        defaultValue={data?.phone}
-        error={errors?.phone}
-      />
-
-      <InputField
-        type="text"
-        name="address"
-        label="Address"
-        register={register}
-        defaultValue={data?.address}
-        error={errors?.address}
-      />
-      <InputField
-        type="text"
-        name="bloodType"
-        label="Blood Type"
-        register={register}
-        defaultValue={data?.bloodType}
-        error={errors?.bloodType}
-      />
-      <InputField
-        type="date"
-        name="birthDay"
-        label="Birth Day"
-        register={register}
-        defaultValue={data?.birthday}
-        error={errors?.birthday}
-      />
-    
-
-    <div className="flex flex-col gap-2 w-full md:w-1/4">
-      <label className="text-xs text-gray-500">Sex</label>
-      <select
-        className="ring-[1.5px] ring-gray-400 font-medium p-2 rounded-md text-sm w-full"
-        {...register("sex")}
-        defaultValue={data?.sex}
-      >
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-        {errors.sex?.message &&
-          <p className="text-xs text-red-400">
-            {errors.sex.message.toString()}
-          </p>}
-      </select>
-    </div>
-
-      <div className="flex flex-col gap-2 w-full md:w-1/4 justify-center">
-        <label className="text-xs text-gray-500 flex items-center gap-2 cursor-pointer" htmlFor="img">
-          <Image
-            src="/upload.png"
-            alt=""
-            width={32}
-            height={32}
-          />
-          <span>Upload a photo</span>
-        </label>
-        <input type="file"
-          id="img"
-          className="hidden"
-          {...register("img")}
+      {data && (
+        <InputField
+          name="id"
+          label="Id"
+          register={register}
+          defaultValue={data?.id}
+          error={errors?.id}
+          hidden
         />
-        {errors.img?.message &&
-          <p className="text-xs text-red-400">
-            {errors.img.message.toString()}
-          </p>}
+      )}
+      <div className="flex flex-col gap-2 w-full md:w-1/4">
+        <label className="text-xs text-gray-500">Mapel</label>
+        <select
+          multiple
+          className="ring-[1.5px] ring-gray-400 font-medium p-2 rounded-md text-sm w-full"
+          {...register("lessonId")}
+          defaultValue={data?.teachers}
+        >
+          {lessons.map((lesson: { id: number; name: string; }) =>
+          (
+            <option value={lesson.id} key={lesson.id}>
+              {lesson.name}
+            </option>
+          )
+          )}
+          {errors.lessonId?.message &&
+            <p className="text-xs text-red-400">
+              {errors.lessonId.message.toString()}
+            </p>}
+        </select>
       </div>
-      </div>
-      
+
+    </div>
+    {state.erorr && (
+      <span className="text-xs text-red-500">Ada yang salah </span>
+    )}
     <button className="bg-blue-400 rounded-md py-2 text-white hover:bg-blue-300">
       {type === "create" ? "Create" : "Update"}
     </button>
@@ -175,4 +127,4 @@ const TeacherForms = ({
   </form>
 }
 
-export default TeacherForms;
+export default ExamForm;

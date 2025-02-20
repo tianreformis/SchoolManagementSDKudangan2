@@ -24,8 +24,8 @@ model Student {
   bloodType   String
   sex         UserSex
   createdAt   DateTime     @default(now())
-  parentId    String
-  parent      Parent       @relation(fields: [parentId], references: [id])
+  parentId    String?
+  parent      Parent?       @relation(fields: [parentId], references: [id])
   classId     Int
   class       Class        @relation(fields: [classId], references: [id])
   gradeId     Int
@@ -33,6 +33,7 @@ model Student {
   attendances Attendance[]
   results     Result[]
   birthday    DateTime
+  
 }
 
 model Teacher {
@@ -60,7 +61,7 @@ model Parent {
   name      String
   surname   String
   email     String?   @unique
-  phone     String    @unique
+  phone     String?    @unique
   address   String
   createdAt DateTime  @default(now())
   students  Student[]

@@ -1,25 +1,7 @@
 import { z } from "zod";
 
-import axios from "axios";
-import crypto from "crypto";
-import prisma from "./prisma";
 
-// Function to check if a password has been pwned using the Have I Been Pwned API
-const isPasswordPwned = async (password: string): Promise<boolean> => {
-  const hash = crypto.createHash('sha1').update(password).digest('hex').toUpperCase();
-  const prefix = hash.slice(0, 5);
-  const suffix = hash.slice(5);
-
-  try {
-    const response = await axios.get(`https://api.pwnedpasswords.com/range/${prefix}`);
-    const hashes = response.data.split('\n').map((line: string) => line.split(':')[0]);
-    return hashes.includes(suffix);
-  } catch (error) {
-    console.error("Error checking password pwned status:", error);
-    return false; // Default to not pwned if there's an error
-  }
-};
-
+// Function to check if a password has been pwned using the Have I Been Pwned AP
 export const subjectSchema = z.object({
   id: z.coerce.number().optional(),
   name: z.string().min(3, { message: "Nama Mapel dibutuhkan" }),
@@ -38,7 +20,8 @@ export const classSchema = z.object({
 
 export type ClassSchema = z.infer<typeof classSchema>;
 
-export const teacherschema = z.object({
+//adding password not required
+export const teacherSchema = z.object({
   id: z.string().optional(),
   username: z
     .string()
@@ -46,10 +29,8 @@ export const teacherschema = z.object({
     .max(20, { message: "Nama Pengguna maksimal 20 karakter" }),  
   password: z
     .string()
-    .min(8, { message: "Kata Sandi setidaknya 8 karakter" })
-    .refine(async (password: string) => !(await isPasswordPwned(password)), {
-      message: "Kata sandi ditemukan di tempat lain, gunakan password lain atau buat lebih panjang",
-    }),
+    .min(8, { message: "Kata Sandi setidaknya 8 karakter" }).optional()
+    .or(z.literal("")),
   email: z
     .string()
     .email({ message: "Format Email tidak tepat" })
@@ -67,4 +48,72 @@ export const teacherschema = z.object({
   )).optional(),//will store obj ids
 });
 
-export type TeacherSchema = z.infer<typeof teacherschema>;
+export type TeacherSchema = z.infer<typeof teacherSchema>;
+
+export const studentSchema = z.object({
+  id: z.string().optional(),
+  username: z
+    .string()
+    .min(4, { message: "Username must be at least 4 characters long!" })
+    .max(20, { message: "Username must be at most 20 characters long!" }),
+  password: z
+    .string()
+    .min(8, { message: "Password must be at least 8 characters long!" })
+    .optional()
+    .or(z.literal("")),
+  name: z.string().min(1, { message: "First name is required!" }),
+  surname: z.string().min(1, { message: "Last name is required!" }),
+  email: z
+    .string()
+    .email({ message: "Invalid email address!" })
+    .optional()
+    .or(z.literal("")),
+  phone: z.string().optional(),
+  address: z.string(),
+  img: z.string().optional(),
+  bloodType: z.string().min(1, { message: "Blood Type is required!" }),
+  birthday: z.coerce.date({ message: "Birthday is required!" }),
+  sex: z.enum(["MALE", "FEMALE"], { message: "Sex is required!" }),
+  gradeId: z.coerce.number().min(1, { message: "Grade is required!" }),
+  classId: z.coerce.number().min(1, { message: "Class is required!" }),
+  parentId: z.string({ message: "Parent Id is required!" }).optional(),
+});
+
+export type StudentSchema = z.infer<typeof studentSchema>;
+
+export const examSchema = z.object({
+  id: z.coerce.number().optional(),
+  title: z.string().min(3, { message: "Subject name is required" }),
+  teachers: z.array(z.string()),
+  startTime: z.coerce.date({ message: "Start time is required ! " }),
+  endTime: z.coerce.date({ message: "End time is required ! " }),
+  lessonId: z.coerce.number({ message: "Lesson is required!" }),
+});
+
+export type ExamSchema = z.infer<typeof examSchema>;
+
+export const parentSchema = z.object({
+  id: z.string().optional(),
+  username: z
+    .string()
+    .min(3, { message: "Username must be at least 3 characters long!" })
+    .max(20, { message: "Username must be at most 20 characters long!" }),
+  password: z
+    .string()
+    .min(8, { message: "Password must be at least 8 characters long!" })
+    .optional()
+    .or(z.literal("")),
+  name: z.string().min(1, { message: "First name is required!" }),
+  surname: z.string().min(1, { message: "Last name is required!" }),
+  email: z
+    .string()
+    .email({ message: "Invalid email address!" })
+    .optional()
+    .or(z.literal("")),
+  phone: z.string().optional(),
+  address : z.string({message:"Tambahkan alamat"}),
+  students: z.array(z.string(
+  )).optional(),//will store obj ids 
+});
+
+export type ParentSchema = z.infer<typeof parentSchema>;
