@@ -71,7 +71,6 @@ const forms: {
   lesson: (setOpen, type, data) => <LessonForm type={type} data={data} />,
   // result: (setOpen, type, data) => <ResultForm type={type} data={data} relatedData={relatedData} />,
 
-
   student: (setOpen, type, data, relatedData) =>
     <StudentForm
       type={type}
