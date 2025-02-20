@@ -2,6 +2,7 @@ import { z } from "zod";
 
 import axios from "axios";
 import crypto from "crypto";
+import prisma from "./prisma";
 
 // Function to check if a password has been pwned using the Have I Been Pwned API
 const isPasswordPwned = async (password: string): Promise<boolean> => {
@@ -21,7 +22,7 @@ const isPasswordPwned = async (password: string): Promise<boolean> => {
 
 export const subjectSchema = z.object({
   id: z.coerce.number().optional(),
-  name: z.string().min(3, { message: "Subject name is required" }),
+  name: z.string().min(3, { message: "Nama Mapel dibutuhkan" }),
   teachers: z.array(z.string())
 });
 
@@ -41,28 +42,28 @@ export const teacherschema = z.object({
   id: z.string().optional(),
   username: z
     .string()
-    .min(3, { message: "Username atleast 3 characters" })
-    .max(20, { message: "Username max 20 characters" }),
+    .min(3, { message: "Nama Pengguna minimal 3 karakter" })
+    .max(20, { message: "Nama Pengguna maksimal 20 karakter" }),  
   password: z
     .string()
     .min(8, { message: "Kata Sandi setidaknya 8 karakter" })
-    .refine(async (password : string) => !(await isPasswordPwned(password)), {
+    .refine(async (password: string) => !(await isPasswordPwned(password)), {
       message: "Kata sandi ditemukan di tempat lain, gunakan password lain atau buat lebih panjang",
     }),
   email: z
     .string()
-    .email({ message: "Invalid Email Address" })
+    .email({ message: "Format Email tidak tepat" })
     .optional()
     .or(z.literal("")),
-  name: z.string().min(3, { message: "First Name must be 3 characters" }),
-  surname: z.string().min(3, { message: "Last Name must be 3 characters" }),
+  name: z.string().min(3, { message: "Nama depan minimal 3 karakter" }),
+  surname: z.string().min(3, { message: "Nama belakang minimal 3 karakter" }),
   phone: z.string().optional(),
   address: z.string(),
-  bloodType: z.string().min(1, { message: "Blood Type is Required" }),
-  birthday: z.coerce.date({ message: "Birthday is Required" }),
-  sex: z.enum(["MALE", "FEMALE"], { message: "Sex is Required" }),
+  bloodType: z.string().min(1, { message: "Golongan Darah dibutuhkan" }),
+  birthday: z.coerce.date({ message: "Tanggal Lahir dibutuhkan" }),
+  sex: z.enum(["MALE", "FEMALE"], { message: "Jenis Kelamin dibutuhkan" }),
   img: z.string().optional(),
-  subjects : z.array(z.string(  
+  subjects: z.array(z.string(
   )).optional(),//will store obj ids
 });
 

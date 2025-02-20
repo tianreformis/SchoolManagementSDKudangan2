@@ -19,7 +19,7 @@ const SubjectForms = ({
   type: "create" | "update";
   data?: any;
   setOpen: Dispatch<SetStateAction<boolean>>;
-  relatedData?: any;
+  relatedData?: any | undefined;
 }) => {
 
 
@@ -56,7 +56,7 @@ const SubjectForms = ({
 
   }, [state, type, setOpen, router]);
 
-  const { teachers } = relatedData
+  const { teachers } = relatedData;
 
   return <form className="flex flex-col gap-8" onSubmit={onSubmit}>
     <h1 className="text-xl font-semibold">{type === "create" ? "Buat Mata Pelajaran Baru" : "Edit Mata Pelajaran"}</h1>
