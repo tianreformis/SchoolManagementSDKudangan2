@@ -17,8 +17,6 @@
     "git.autofetch": true,
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
-    "telemetry.telemetryLevel": "off",
     "window.zoomLevel": -2,
-    "linux.window.zoomLevel": -1,
     "editor.minimap.maxColumn": 0,
 }
