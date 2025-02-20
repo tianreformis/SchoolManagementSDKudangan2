@@ -2,7 +2,8 @@ import { currentUser, User } from "@clerk/nextjs/server";
 import { headers } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
-import { Home09Icon, UserIcon,TeacherIcon,StudentsIcon,Books01Icon,StackStarIcon,TeachingIcon,Brain02Icon,Task01Icon, CheckmarkSquare03Icon,PresentationOnlineIcon,Calendar03Icon, Mail01Icon, PromotionIcon, UserAccountIcon, Settings02Icon, LogoutSquare02Icon } from "hugeicons-react";
+import { Home09Icon, UserIcon, TeacherIcon, StudentsIcon, Books01Icon, StackStarIcon, TeachingIcon, Brain02Icon, Task01Icon, CheckmarkSquare03Icon, PresentationOnlineIcon, Calendar03Icon, Mail01Icon, PromotionIcon, UserAccountIcon, Settings02Icon, LogoutSquare02Icon } from "hugeicons-react";
+import { SignOutButton } from "@clerk/nextjs";
 
 
 
@@ -102,7 +103,7 @@ const menuItems = [
       {
         icon: <UserAccountIcon size={24} color="#333" />,
         label: "Profil",
-        href: "/profile",
+        href: "/list/user-profile",
         visible: ["admin", "teacher", "student", "parent"],
       },
       {
@@ -111,12 +112,7 @@ const menuItems = [
         href: "/settings",
         visible: ["admin", "teacher", "student", "parent"],
       },
-      {
-        icon: <LogoutSquare02Icon size={24} color="#333" />,
-        label: "Keluar",
-        href: "/logout",
-        visible: ["admin", "teacher", "student", "parent"],
-      },
+
     ],
   },
 ];
@@ -130,9 +126,9 @@ const Menu = async () => {
   const domain = headersList.get('host') || "";
   const fullUrl = headersList.get('referer') || "";
   const [, pathname] = fullUrl.match(new RegExp(`https?:\/\/${domain}(.*)`)) || [];
-  
+
   console.log(pathname);
-  
+
 
 
   return (
@@ -155,15 +151,25 @@ const Menu = async () => {
                       : ""}
                     `}
                 >
-                  {/* <Image src={item.icon} alt="" width={20} height={20} /> */}
                   {item.icon}
                   <span className="hidden lg:block">{item.label}</span>
                 </Link>
               );
             }
           })}
+
         </div>
       ))}
+
+      <SignOutButton redirectUrl="/">
+        <div className="flex flex-col gap-2">
+        <button className=" flex items-center justify-center lg:justify-start gap-4 text-gray-500 py-2 md:px-2 rounded-md hover:bg-lamaSkyLight       ">
+          <LogoutSquare02Icon size={24} color="#333" />
+          <span className="hidden lg:block">Keluar</span>
+        </button>
+        </div>
+        
+      </SignOutButton>
     </div>
   );
 };
