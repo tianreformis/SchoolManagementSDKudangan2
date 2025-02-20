@@ -1,7 +1,9 @@
-import { currentUser } from "@clerk/nextjs/server";
+import { currentUser, User } from "@clerk/nextjs/server";
 import { headers } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
+import { Home09Icon, UserIcon,TeacherIcon,StudentsIcon,Books01Icon,StackStarIcon,TeachingIcon,Brain02Icon,Task01Icon, CheckmarkSquare03Icon,PresentationOnlineIcon,Calendar03Icon, Mail01Icon, PromotionIcon, UserAccountIcon, Settings02Icon, LogoutSquare02Icon } from "hugeicons-react";
+
 
 
 const menuItems = [
@@ -9,85 +11,85 @@ const menuItems = [
     title: "MENU",
     items: [
       {
-        icon: "/home.png",
+        icon: <Home09Icon size={24} color="#333" />,
         label: "Halaman Awal",
         href: "/",
         visible: ["admin", "teacher", "student", "parent"],
       },
       {
-        icon: "/teacher.png",
+        icon: <TeacherIcon size={24} color="#333" />,
         label: "Daftar Guru",
         href: "/list/teachers",
         visible: ["admin", "teacher"],
       },
       {
-        icon: "/student.png",
+        icon: <StudentsIcon size={24} color="#333" />,
         label: "Daftar Murid",
         href: "/list/students",
         visible: ["admin", "teacher"],
       },
       {
-        icon: "/parent.png",
+        icon: <UserIcon size={24} color="#333" />,
         label: "Orang Tua",
         href: "/list/parents",
         visible: ["admin", "teacher"],
       },
       {
-        icon: "/subject.png",
+        icon: <Books01Icon size={24} color="#333" />,
         label: "Mata Pelajaran",
         href: "/list/subjects",
         visible: ["admin"],
       },
       {
-        icon: "/class.png",
+        icon: <StackStarIcon size={24} color="#333" />,
         label: "Daftar Kelas",
         href: "/list/classes",
         visible: ["admin", "teacher"],
       },
       {
-        icon: "/lesson.png",
+        icon: <TeachingIcon size={24} color="#333" />,
         label: "Lessons",
         href: "/list/lessons",
         visible: ["admin", "teacher"],
       },
       {
-        icon: "/exam.png",
+        icon: <Brain02Icon size={24} color="#333" />,
         label: "Exams",
         href: "/list/exams",
         visible: ["admin", "teacher", "student", "parent"],
       },
       {
-        icon: "/assignment.png",
+        icon: <Task01Icon size={24} color="#333" />,
         label: "Assignments",
         href: "/list/assignments",
         visible: ["admin", "teacher", "student", "parent"],
       },
       {
-        icon: "/result.png",
+        icon: <CheckmarkSquare03Icon size={24} color="#333" />,
         label: "Nilai",
         href: "/list/results",
         visible: ["admin", "teacher", "student", "parent"],
       },
       {
-        icon: "/attendance.png",
+        icon: <PresentationOnlineIcon size={24} color="#333" />,
         label: "Kehadiran",
         href: "/list/attendance",
         visible: ["admin", "teacher", "student", "parent"],
       },
       {
-        icon: "/calendar.png",
+        icon: <Calendar03Icon size={24} color="#333" />,
         label: "Acara",
         href: "/list/events",
         visible: ["admin", "teacher", "student", "parent"],
       },
       {
-        icon: "/message.png",
+        icon: <Mail01Icon size={24} color="#333" />,
         label: "Pesan",
         href: "/list/messages",
         visible: ["admin", "teacher", "student", "parent"],
       },
       {
-        icon: "/announcement.png",
+        icon: <PromotionIcon size={24} color="#333" />,
         label: "Pengumuman",
         href: "/list/announcements",
         visible: ["admin", "teacher", "student", "parent"],
@@ -98,19 +100,19 @@ const menuItems = [
     title: "OTHER",
     items: [
       {
-        icon: "/profile.png",
+        icon: <UserAccountIcon size={24} color="#333" />,
         label: "Profil",
         href: "/profile",
         visible: ["admin", "teacher", "student", "parent"],
       },
       {
-        icon: "/setting.png",
+        icon: <Settings02Icon size={24} color="#333" />,
         label: "Pengaturan",
         href: "/settings",
         visible: ["admin", "teacher", "student", "parent"],
       },
       {
-        icon: "/logout.png",
+        icon: <LogoutSquare02Icon size={24} color="#333" />,
         label: "Keluar",
         href: "/logout",
         visible: ["admin", "teacher", "student", "parent"],
@@ -153,7 +155,8 @@ const Menu = async () => {
                       : ""}
                     `}
                 >
-                  <Image src={item.icon} alt="" width={20} height={20} />
+                  {/* <Image src={item.icon} alt="" width={20} height={20} /> */}
+                  {item.icon}
                   <span className="hidden lg:block">{item.label}</span>
                 </Link>
               );
