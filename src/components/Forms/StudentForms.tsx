@@ -163,13 +163,13 @@ const StudentForm = ({
           error={errors.birthday}
           type="date"
         />
-        <InputField
+        {/* <InputField
           label="Parent Id"
           name="parentId"
           defaultValue={data?.parentId}
           register={register}
           error={errors.parentId}
-        />
+        /> */}
         {data && (
           <InputField
             label="Id"

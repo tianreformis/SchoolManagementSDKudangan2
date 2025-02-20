@@ -144,9 +144,9 @@ const ParentForm = ({
             {...register("students")}
             defaultValue={data?.students.name}
           >
-            {students.map((student: { id: string; name: string }) => (
+            {students.map((student: { id: string; name: string; surname: string }) => (
               <option value={student.id} key={student.id}>
-                {student.name}
+                {student.name + " " + student.surname}
               </option>
             ))}
           </select>

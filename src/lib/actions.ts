@@ -373,17 +373,17 @@ export const createExam = async (
   const role = (sessionClaims?.metadata as { role?: string })?.role;
 
   try {
-    if (role === "teacher") {
-      const teacherLesson = await prisma.lesson.findFirst({
-        where: {
-          teacherId: userId!,
-          id: data.lessonId,
-        }
-      });
-      if (!teacherLesson) {
-        return { success: false, error: true };
-      }
-    }
+    // if (role === "teacher") {
+    //   const teacherLesson = await prisma.lesson.findFirst({
+    //     where: {
+    //       teacherId: userId!,
+    //       id: data.lessonId,
+    //     }
+    //   });
+    //   if (!teacherLesson) {
+    //     return { success: false, error: true };
+    //   }
+    // }
 
     await prisma.exam.create({
       data: {

@@ -57,12 +57,12 @@ const ExamForm = ({
   const { lessons } = relatedData;
 
   return <form className="flex flex-col gap-8" onSubmit={onSubmit}>
-    <h1 className="text-xl font-semibold">{type === "create" ? "Buat Mata Tugas" : "Edit Tugas"}</h1>
+    <h1 className="text-xl font-semibold">{type === "create" ? "Buat Tugas" : "Edit Tugas"}</h1>
     <span className="text-sm text-black font-bold ">Informasi Penting</span>
     <div className="flex jusify-between flex-wrap gap-4">
       <InputField
         type="text"
-        name="name"
+        name="title"
         label="Judul Tugas"
         register={register}
         defaultValue={data?.title}
